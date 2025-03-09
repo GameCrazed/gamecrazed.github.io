@@ -253,7 +253,7 @@
         //#endregion
 
         //#region /*----------Measurements Table Tab Functions----------*/
-        import { loadMeasurements } from './dist/bundle.js';
+        import { LoadMeasurements } from './dist/bundle.js';
 
         async function populateMeasurementsTable() {
             const tableBody = document.getElementById('measurementsTableBody');
@@ -262,7 +262,7 @@
             // Clear current table rows
             tableBody.innerHTML = '';
 
-            const measurementsTable = await loadMeasurements(toggleButton.value);
+            const measurementsTable = await LoadMeasurements(toggleButton.value);
 
             measurementsTable.forEach((item) => {
                 const row = document.createElement('tr');

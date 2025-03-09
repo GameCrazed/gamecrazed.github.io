@@ -6,7 +6,7 @@ const workerUrl = new URL(
 );
 const wasmUrl = new URL("sql.js-httpvfs/dist/sql-wasm.wasm", import.meta.url);
 
-export async function loadMeasurements(toggleButton: string) {
+export async function LoadMeasurements(toggleButton: string) {
   const worker = await createDbWorker(
     [
       {
