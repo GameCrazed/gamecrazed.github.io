@@ -6,5 +6,6 @@ CREATE TABLE "Measurements" (
 	"Time"	TEXT,
 	"Distance"	TEXT,
 	"Volume"	TEXT,
+	"NumericalMass"	INTEGER,
 	PRIMARY KEY("MeasurementId" AUTOINCREMENT)
 );
