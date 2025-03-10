@@ -1,36 +1,4 @@
 //#region /*----------Core Functions----------*/
-        // window.onload = () => {
-        //     // Navigation Tab Buttons
-        //     document.getElementById("degreeCalcTabNavBtn").addEventListener("click", function () { showTab("degreesTab"); }, false);
-        //     document.getElementById("throwingDistCalcTabNavBtn").addEventListener("click", function () { showTab("throwingTab"); }, false);
-        //     document.getElementById("measurementsTabNavBtn").addEventListener("click", function () { showTab("measurementsTab"); }, false);
-        //     document.getElementById("advantagesTabNavBtn").addEventListener("click", function () { showTab("advantagesTab"); }, false);
-        //     document.getElementById("conditionsTabNavBtn").addEventListener("click", function () { showTab("conditionsTab"); }, false);
-        //     document.getElementById("powersTabNavBtn").addEventListener("click", function () { showTab("powersTab"); }, false);
-
-        //     // Page Buttons
-        //     document.getElementById("degreeCalcBtn").addEventListener("click", calculateDegrees, false);
-        //     document.getElementById("calcThrowDist").addEventListener("click", calculateThrowingDistance, false);
-        //     document.getElementById("addPowerBtn").addEventListener("click", addPower, false);
-        //     document.getElementById("exportPowersBtn").addEventListener("click", exportPowers, false);
-        //     document.getElementById('importPowersBtn').addEventListener('click', () => { document.getElementById('importPowers').click(); });
-        //     document.getElementById('importPowers').addEventListener('change', importPowers);
-        //     document.getElementById('addCreatureBtn').addEventListener('click', addConditionCreature);
-
-        //     // Populate Tables and Lists
-        //     populateMeasurementsTable();
-        //     populateAdvantagesList();
-        //     populateConditionsList();
-        //     loadPowersFromLocalStorage();
-        //     loadCreaturesFromLocalStorage();
-
-        //     // Search Bars
-        //     const powersSearchInput = document.getElementById('searchAdvantages');
-        //     powersSearchInput.addEventListener('input', filterAdvantages);
-        //     document.getElementById('filterAdvantagesCheckbox').addEventListener('change', filterAdvantages);
-
-        // };
-
         document.addEventListener('DOMContentLoaded', function() {
             // Event listeners for tab navigation buttons
             document.getElementById('degreeCalcTabNavBtn').addEventListener('click', function() {
@@ -198,12 +166,17 @@
         //#endregion
 
         //#region /*----------Throwing Distance Calculator Tab Functions----------*/
-        function calculateThrowingDistance() {
+        import { GetMeasurementByMassLbs } from './index.ts';
+
+        async function calculateThrowingDistance() {
             const strengthRank = parseInt(document.getElementById('strength').value);
             const massRank = parseInt(document.getElementById('massRank').value);
             const massKg = parseFloat(document.getElementById('throwingMassKg').value);
             let massLbs = parseFloat(document.getElementById('throwingMassLbs').value);
             const throwingResultDiv = document.getElementById('throwingResult');
+
+            console.log("Initial massLbs:", massLbs);
+            console.log("Initial massKgs:", massKg);
 
             if (isNaN(strengthRank)) {
                 throwingResultDiv.textContent = 'Please enter a valid Strength Rank.';
@@ -211,43 +184,54 @@
             }
 
             if (!isNaN(massKg)) {
-                massLbs = massKg * 2.20462; // Conversion factor from kg to lbs
+                massLbs = (massKg * 2.20462).toFixed(2); // Conversion factor from kg to lbs
+            }
+
+            console.log("Initial massLbs:", massLbs);
+
+            let closestMassRank;
+            try {
+                closestMassRank = await GetMeasurementByMassLbs(massLbs);
+                console.log("result:", closestMassRank);
+            } catch (error) {
+                throwingResultDiv.textContent = 'Error loading measurements data: ' + error;
+                return;
             }
 
             let massRankValue;
             if (!isNaN(massRank)) {
                 massRankValue = massRank;
             } else if (!isNaN(massLbs)) {
-                for (let i = 0; i < measurementsTable.length; i++) {
-                    if (i === 0 && massLbs <= measurementsTable[i].MassInLbs) {
-                        massRankValue = measurementsTable[i].Rank;
-                        break;
-                    } else if (i > 0 && massLbs > measurementsTable[i - 1].MassInLbs && massLbs <= measurementsTable[i].MassInLbs) {
-                        massRankValue = measurementsTable[i].Rank;
-                        break;
-                    }
-                }
+                massRankValue = closestMassRank.Rank;
             } else {
                 throwingResultDiv.textContent = 'Please enter a Mass Rank or Weight.';
                 return;
             }
 
-            const throwingDistanceRank = strengthRank - massRankValue + 5;
-            const distance = rankToDistance(throwingDistanceRank);
+            const throwingDistanceRank = strengthRank - massRankValue;
+            const distance = await RankToDistance(throwingDistanceRank);
+            console.log("Distance: " + distance);
 
-            throwingResultDiv.innerHTML = `Throwing Distance: ${distance}<br/>Distance Rank: ${throwingDistanceRank - 5}${!isNaN(massKg) ? `<br/>Equivalent Mass In Lbs: ${massLbs.toFixed(2)}` : ''}<br/>Mass Rank: ${massRankValue}<br/><div style="font-size: 10px; font-weight: normal; padding-top: 10px">Calculation: Strength Rank (${strengthRank}) - Mass Rank (${massRankValue}) = Throwing Distance Rank (${throwingDistanceRank - 5})</div>`;
+            throwingResultDiv.innerHTML = `Throwing Distance: ${distance}<br/>Distance Rank: ${throwingDistanceRank}${!isNaN(massKg) ? `<br/>Equivalent Mass In Lbs: ${massLbs}` : ''}<br/>Mass Rank: ${massRankValue}<br/><div style="font-size: 10px; font-weight: normal; padding-top: 10px">Calculation: Strength Rank (${strengthRank}) - Mass Rank (${massRankValue}) = Throwing Distance Rank (${throwingDistanceRank})</div>`;
         }
 
-        function rankToDistance(rank) {
+        import { GetMeasurementByRank } from './index.ts';
+        async function RankToDistance(rank) {
             // Check if rank is within valid range
+            console.log("Rank:" + rank);
             if (rank < 0) {
+                console.log("Range < 6 inches");
                 return "Range < 6 inches";
-            } else if (rank >= measurementsTable.length) {
+            } else if (rank >= 30) {
+                console.log("Range > 4 million miles");
                 return "Range > 4 million miles";
             }
 
-            // Access the distance value from measurementsTable based on rank
-            return measurementsTable[rank].Distance;
+            // Access the distance value from MeasurementsTable based on rank
+            const result = await GetMeasurementByRank(rank);
+            console.log("Distance Result:");
+            console.log(result);
+            return result.Distance;
         }
         //#endregion
 
