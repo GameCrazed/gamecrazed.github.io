@@ -11,13 +11,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
     publicPath: '',
-    library: {
-      type: 'module',
-    },
-    module: true,
-  },
-  experiments: {
-    outputModule: true,
   },
   resolve: {
     extensions: ['.ts', '.js'],
@@ -29,6 +22,16 @@ module.exports = {
         test: /\.ts$/,
         exclude: /node_modules/,
         use: 'ts-loader',
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
       {
         test: /\.css$/,
