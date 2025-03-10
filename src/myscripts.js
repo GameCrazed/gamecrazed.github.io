@@ -1,4 +1,3 @@
-
 //#region /*----------Core Functions----------*/
         // window.onload = () => {
         //     // Navigation Tab Buttons
@@ -253,7 +252,7 @@
         //#endregion
 
         //#region /*----------Measurements Table Tab Functions----------*/
-        import { LoadMeasurements } from './dist/bundle.js';
+        import { LoadMeasurements } from './index.ts';
 
         async function populateMeasurementsTable() {
             const tableBody = document.getElementById('measurementsTableBody');
