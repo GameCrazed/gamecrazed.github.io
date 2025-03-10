@@ -1,3 +1,4 @@
+import '../main.css';
 import { createDbWorker } from "sql.js-httpvfs";
 
 const workerUrl = new URL(
