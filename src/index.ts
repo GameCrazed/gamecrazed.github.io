@@ -108,3 +108,27 @@ export async function GetToolTipById(tooltipId: number) {
     throw error;
   }
 }
+
+export async function GetBasicConditions() {
+  try {
+    const worker = await InitializeWorker();
+    const query = `SELECT * FROM BasicConditions ORDER BY ConditionName`;
+    const results = await worker.db.query(query);
+    return results;
+  } catch (error) {
+    console.error("Error getting Basic Conditions: ", error);
+    throw error;
+  }
+}
+
+export async function GetCombinedConditions() {
+  try {
+    const worker = await InitializeWorker();
+    const query = `SELECT * FROM CombinedConditions ORDER BY ConditionName`;
+    const results = await worker.db.query(query);
+    return results;
+  } catch (error) {
+    console.error("Error getting Combined Conditions: ", error);
+    throw error;
+  }
+}
