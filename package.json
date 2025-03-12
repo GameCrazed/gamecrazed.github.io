@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "database.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build:dev": "webpack --config webpack.config.js",
     "build:prod": "webpack --mode production --config webpack.config.js",
     "start": "http-server ./dist"
   },
