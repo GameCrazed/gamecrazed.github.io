@@ -589,19 +589,17 @@ function appendConditionsButtons(container, titleText, conditions, creatureId, i
     });
 }
 
+import { GetCombinedConditionByConditionName } from "./index.ts";
 async function addEffectToCreature(creatureId, effectName, isCombinedCondition = false) {
     const effectsList = document.getElementById(`effects-${creatureId}`);
     const effectItem = document.createElement("li");
 
     if (isCombinedCondition) {
-        const combinedConditions = await GetCombinedConditions();
-        const combinedCondition = combinedConditions.find(c => c.ConditionName === effectName);
-        appendCombinedCondition(effectItem, combinedCondition);
+        const combinedCondition = await GetCombinedConditionByConditionName(effectName);
         effectItem.dataset.basicConditions = JSON.stringify(combinedCondition.BasicConditions.split(','));
-
+        appendCombinedCondition(effectItem, combinedCondition);
     } else {
-        const basicConditions = await GetBasicConditions();
-        const basicCondition = basicConditions.find(bc => bc.ConditionName === effectName);
+        const basicCondition = await GetBasicConditionByConditionName(effectName);
         appendBasicCondition(effectItem, basicCondition);
     }
 
@@ -612,15 +610,17 @@ async function addEffectToCreature(creatureId, effectName, isCombinedCondition =
     saveCreaturesToLocalStorage();
 }
 
+import { GetBasicConditionByConditionName } from "./index.ts";
 function appendCombinedCondition(effectItem, combinedCondition) {
     if (combinedCondition) {
         const description = `<b>${combinedCondition.ConditionName}: </b>${combinedCondition.DescriptionSummary}`;
         effectItem.innerHTML = description;
 
         const subList = document.createElement("ul");
+        console.log("CCCC");
+        console.log(combinedCondition.BasicConditions);
         combinedCondition.BasicConditions.split(',').forEach(async basicConditionName => {
-            const basicConditions = await GetBasicConditions();
-            const basicCondition = basicConditions.find(bc => bc.ConditionName === basicConditionName);
+            const basicCondition = await GetBasicConditionByConditionName(basicConditionName);
             if (basicCondition) {
                 const subListItem = document.createElement("li");
                 subListItem.innerHTML = `<b>${basicCondition.ConditionName}: </b>${basicCondition.DescriptionSummary}`;
