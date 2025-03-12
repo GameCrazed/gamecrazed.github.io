@@ -279,18 +279,25 @@
         //#endregion
 
         //#region /*----------Advantages Tab Functions----------*/
-        function populateAdvantagesList() {
+        import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "./index.ts";
+
+        async function populateAdvantagesList() {
             const advantagesListElement = document.getElementById('advantagesList');
             advantagesListElement.innerHTML = '';
+            console.log("before get");
+            const advantages = await GetAdvantages();
 
-            advantages.forEach(advantage => {
+            console.log("Test");
+            console.log(advantages);
+            await Promise.all(advantages.map(async advantage => {
+                console.log(advantage);
                 const listItem = document.createElement('li');
 
                 const advantageContainer = document.createElement('div'); // Create a container for advantage name and checkbox
                 advantageContainer.classList.add('advantage-container');
 
                 const nameElement = document.createElement('strong');
-                nameElement.textContent = advantage.Name;
+                nameElement.textContent = advantage.AdvantageName;
                 advantageContainer.appendChild(nameElement);
 
                 // Create checkbox
@@ -307,10 +314,18 @@
 
                 let descriptionHtml = advantage.Description;
 
-                advantage.Tooltips.forEach((tooltip, index) => {
-                    const tooltipHtml = `<span class="tooltip" data-tooltip-index="${index}">${tooltip.TooltipTag}</span>`;
-                    descriptionHtml = descriptionHtml.replace(`{tooltip${index}}`, tooltipHtml);
-                });
+                // Use a regular expression to find all instances of words within {}
+                const regex = /\{(.*?)\}/g;
+                let match;
+                while ((match = regex.exec(descriptionHtml)) !== null) {
+                    const word = match[1];
+                    const tooltip = await GetToolTipByTag(word);
+                    console.log("Tooltip: " + tooltip);
+                    console.log(tooltip);
+                    console.log(descriptionHtml);
+                    descriptionHtml = descriptionHtml.replace(`{${word}}`, `<span class="tooltip" data-tooltip-index="${tooltip.TooltipId}">${tooltip.TooltipTag}</span>`);
+                    console.log(descriptionHtml);
+                }
 
                 const descriptionElement = document.createElement('div');
                 descriptionElement.className = 'description';
@@ -323,32 +338,54 @@
                     }
                 });
 
-                //---------------------------------------------------CLEAN THIS UP!
                 // Add event listener for tooltips
                 const tooltips = listItem.querySelectorAll('.tooltip');
-                tooltips.forEach((tooltip, index) => {
-                    tooltip.addEventListener('click', (event) => {
+                console.log(tooltips);
+                tooltips.forEach((tooltip) => {
+                    tooltip.addEventListener('click', async (event) => {
                         event.stopPropagation(); // Prevent toggling the 'expanded' class on li
-                        showTooltipPopup(advantage.Tooltips[index]);
+                        const tooltipIndex = event.target.getAttribute('data-tooltip-index');
+                        const tooltip = await GetToolTipById(tooltipIndex);
+                        showTooltipPopup(tooltip, event);
                     });
                 });
 
 
-                advantagesListElement.appendChild(listItem);
+                return listItem;
+            })).then(listItems => {
+                listItems.forEach(listItem => {
+                    advantagesListElement.appendChild(listItem);
+                });
             });
         }
 
-        //---------------------------------------------------CLEAN THIS UP!
-        function showTooltipPopup(tooltipData) {
+        function showTooltipPopup(tooltipData, event) {
+            console.log(tooltipData);
             const tooltipPopup = document.getElementById('tooltipPopup');
             const tooltipTitle = document.getElementById('tooltipTitle');
             const tooltipContent = document.getElementById('tooltipContent');
 
-            tooltipTitle.innerHTML = capitalizeFirstLetterOfEachWord(tooltipData.TooltipTag);
+            tooltipTitle.innerHTML = tooltipData.TooltipTag;
             tooltipContent.innerHTML = tooltipData.TooltipDescription;
             tooltipPopup.style.display = 'block';
-            tooltipPopup.style.left = event.clientX + 'px';
-            tooltipPopup.style.top = event.clientY + 'px';
+
+            // Position the tooltip
+            let top = event.clientY + 10;
+            let left = event.clientX + 10;
+
+            // Adjust if the tooltip goes off-screen
+            const rect = tooltipPopup.getBoundingClientRect();
+            console.log("rect");
+            console.log(rect);
+            if (top + rect.height > window.innerHeight) {
+                top = window.innerHeight - rect.height - 10;
+            }
+            if (left + rect.width > window.innerWidth) {
+                left = window.innerWidth - rect.width - 10;
+            }
+
+            tooltipPopup.style.left = left + 'px';
+            tooltipPopup.style.top = top + 'px';
         }
 
         function filterAdvantages() {
@@ -1125,14 +1162,14 @@
             volume: 0.0283168 // cubic feet to cubic meters
         };
 
-        const advantages = [
+        const advantages11 = [
             {
                 Name: 'Accurate Attack',
                 Description: 'When you make an {tooltip0} (see Maneuvers, page 249) you can take a penalty of up to –5 on the effect modifier of the attack and add the same number (up to +5) to your attack bonus.',
                 Tooltips: [
                     {
                         TooltipTag: 'accurate attack',
-                        TooltipDescription: ' When you make an attack, you can take a penalty of up to –2 on the effect modifier of the attack and add the same number(up to + 2) to your attack bonus. Your effect modifier cannot be reduced below + 0 and your attack bonus cannot more than double in this way. The changes are declared before you make the attack check and last until the start of your next turn.'
+                        TooltipDescription: 'When you make an attack, you can take a penalty of up to –2 on the effect modifier of the attack and add the same number(up to + 2) to your attack bonus. Your effect modifier cannot be reduced below + 0 and your attack bonus cannot more than double in this way. The changes are declared before you make the attack check and last until the start of your next turn.'
                     }
                 ],
                 AdvantageType: 'Combat',
@@ -1156,7 +1193,7 @@
             },
             {
                 Name: 'All-Out Attack',
-                Description: 'When you make an {tooltip0} (see Maneuvers, page 249) you can take a penalty of up to –5 on your active defenses(Dodge and Parry) and add the same number(up to + 5) to your attack bonus.',
+                Description: 'When you make an {All-Out Attack} (see Maneuvers, page 249) you can take a penalty of up to –5 on your active defenses(Dodge and Parry) and add the same number(up to + 5) to your attack bonus.',
                 Tooltips: [
                     {
                         TooltipTag: 'all-out attack',
@@ -1179,7 +1216,7 @@
                 Tooltips: [
                     {
                         TooltipTag: 'Magical Inventions',
-                        TooltipDescription: ' For magical, rather than technological, inventions, use the normal inventing rules, but substitute the Expertise: Magic skill for the Technology skill on the design and construction checks.',
+                        TooltipDescription: 'For magical, rather than technological, inventions, use the normal inventing rules, but substitute the Expertise: Magic skill for the Technology skill on the design and construction checks.',
                     }
                 ],
                 AdvantageType: 'Skill',
@@ -1212,7 +1249,7 @@
                 Tooltips: [
                     {
                         TooltipTag: '<b>Feature</b>',
-                        TooltipDescription: ' You have one or more minor features, effects granting you an occasionally useful ability, one per rank. This effect is essentially a version of the Benefit advantage(see page 134) but a power rather than a virtue of skill, talent, or social background. For example, diplomatic immunity or wealth are Benefits; fur, the ability to mimic sounds, or a hidden compartment in your hollow leg are Features.<br/><br/> It’s up to the GM what capabilities qualify as Features; generally, if something has no real game effect, it’s just a descriptor. If it has an actual game system benefit, it may be a Feature. There’s no need to define every possible Feature a character may have down to the last detail.<br/><br/>Some Features may be sustained duration rather than permanent with no change in cost. This suits active Fea tures a character has to use and maintain rather than having them as passive traits requiring no effort whatsoever.',
+                        TooltipDescription: 'You have one or more minor features, effects granting you an occasionally useful ability, one per rank. This effect is essentially a version of the Benefit advantage(see page 134) but a power rather than a virtue of skill, talent, or social background. For example, diplomatic immunity or wealth are Benefits; fur, the ability to mimic sounds, or a hidden compartment in your hollow leg are Features.<br/><br/> It’s up to the GM what capabilities qualify as Features; generally, if something has no real game effect, it’s just a descriptor. If it has an actual game system benefit, it may be a Feature. There’s no need to define every possible Feature a character may have down to the last detail.<br/><br/>Some Features may be sustained duration rather than permanent with no change in cost. This suits active Fea tures a character has to use and maintain rather than having them as passive traits requiring no effort whatsoever.',
                     },
                     {
                         TooltipTag: '<b>Sample Benefits</b>',
@@ -1410,11 +1447,11 @@
             },
             {
                 Name: 'Hide In Plain Sight',
-                Description: 'You can hide (see <b>{tooltip0}</b> under <b>Stealth</b> in the <b>Skills</b> chapter) without any need for a Deception or Intimidation check or any sort of diversion, and without penalty to your Stealth check. You’re literally there one moment, and gone the next. You must still have some form of cover or concealment within range of your normal movement speed in order to hide.',
+                Description: 'You can hide (see <b>{Hiding}</b> under <b>Stealth</b> in the <b>Skills</b> chapter) without any need for a Deception or Intimidation check or any sort of diversion, and without penalty to your Stealth check. You’re literally there one moment, and gone the next. You must still have some form of cover or concealment within range of your normal movement speed in order to hide.',
                 Tooltips: [
                     {
                         TooltipTag: 'Hiding',
-                        TooltipDescription: ' If you have cover or concealment, make a Stealth check, opposed by an observer’s Perception check, to hide and go unnoticed.<br/><br/>If others are aware of your presence, you can’t use Stealth to remain undetected. You can run around a corner so you are out of sight and then use Stealth, but others know which way you went. You can’t hide at all if you have absolutely no cover or concealment, since that means you are standing out in plain sight. Of course, if someone isn’t looking directly at you(you’re sneaking up from behind, for example), then you have concealment relative to that person.<br/<br/>A successful Deception or Intimidation check can give you the momentary distraction needed to make a Stealth check while people are aware of you. When others turn their attention from you, make a Stealth check if you can reach cover or concealment of some kind. (As a general guideline, any such cover has to be within 1 foot for every rank you have in Stealth.) This check, however, is at a –5 penalty because you have to move quickly.'
+                        TooltipDescription: 'If you have cover or concealment, make a Stealth check, opposed by an observer’s Perception check, to hide and go unnoticed.<br/><br/>If others are aware of your presence, you can’t use Stealth to remain undetected. You can run around a corner so you are out of sight and then use Stealth, but others know which way you went. You can’t hide at all if you have absolutely no cover or concealment, since that means you are standing out in plain sight. Of course, if someone isn’t looking directly at you(you’re sneaking up from behind, for example), then you have concealment relative to that person.<br/<br/>A successful Deception or Intimidation check can give you the momentary distraction needed to make a Stealth check while people are aware of you. When others turn their attention from you, make a Stealth check if you can reach cover or concealment of some kind. (As a general guideline, any such cover has to be within 1 foot for every rank you have in Stealth.) This check, however, is at a –5 penalty because you have to move quickly.'
                     }
                 ],
                 AdvantageType: 'Skill',
