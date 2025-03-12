@@ -341,12 +341,12 @@
                 // Add event listener for tooltips
                 const tooltips = listItem.querySelectorAll('.tooltip');
                 console.log(tooltips);
-                tooltips.forEach((tooltip, index) => {
+                tooltips.forEach((tooltip) => {
                     tooltip.addEventListener('click', async (event) => {
                         event.stopPropagation(); // Prevent toggling the 'expanded' class on li
                         const tooltipIndex = event.target.getAttribute('data-tooltip-index');
                         const tooltip = await GetToolTipById(tooltipIndex);
-                        showTooltipPopup(tooltip);
+                        showTooltipPopup(tooltip, event);
                     });
                 });
 
@@ -359,8 +359,8 @@
             });
         }
 
-        //---------------------------------------------------CLEAN THIS UP!
-        function showTooltipPopup(tooltipData) {
+        function showTooltipPopup(tooltipData, event) {
+            console.log(tooltipData);
             const tooltipPopup = document.getElementById('tooltipPopup');
             const tooltipTitle = document.getElementById('tooltipTitle');
             const tooltipContent = document.getElementById('tooltipContent');
@@ -368,8 +368,24 @@
             tooltipTitle.innerHTML = tooltipData.TooltipTag;
             tooltipContent.innerHTML = tooltipData.TooltipDescription;
             tooltipPopup.style.display = 'block';
-            tooltipPopup.style.left = event.clientX + 'px';
-            tooltipPopup.style.top = event.clientY + 'px';
+
+            // Position the tooltip
+            let top = event.clientY + 10;
+            let left = event.clientX + 10;
+
+            // Adjust if the tooltip goes off-screen
+            const rect = tooltipPopup.getBoundingClientRect();
+            console.log("rect");
+            console.log(rect);
+            if (top + rect.height > window.innerHeight) {
+                top = window.innerHeight - rect.height - 10;
+            }
+            if (left + rect.width > window.innerWidth) {
+                left = window.innerWidth - rect.width - 10;
+            }
+
+            tooltipPopup.style.left = left + 'px';
+            tooltipPopup.style.top = top + 'px';
         }
 
         function filterAdvantages() {
