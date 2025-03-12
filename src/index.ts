@@ -108,3 +108,51 @@ export async function GetToolTipById(tooltipId: number) {
     throw error;
   }
 }
+
+export async function GetBasicConditions() {
+  try {
+    const worker = await InitializeWorker();
+    const query = `SELECT * FROM BasicConditions ORDER BY ConditionName`;
+    const results = await worker.db.query(query);
+    return results;
+  } catch (error) {
+    console.error("Error getting Basic Conditions: ", error);
+    throw error;
+  }
+}
+
+export async function GetBasicConditionByConditionName(conditionName: string) {
+  try {
+    const worker = await InitializeWorker();
+    const query = `SELECT * FROM BasicConditions WHERE ConditionName = '${conditionName}' LIMIT 1`;
+    const result = await worker.db.query(query);
+    return result[0];
+  } catch (error) {
+    console.error("Error getting Basic Conditions: ", error);
+    throw error;
+  }
+}
+
+export async function GetCombinedConditions() {
+  try {
+    const worker = await InitializeWorker();
+    const query = `SELECT * FROM CombinedConditions ORDER BY ConditionName`;
+    const results = await worker.db.query(query);
+    return results;
+  } catch (error) {
+    console.error("Error getting Combined Conditions: ", error);
+    throw error;
+  }
+}
+
+export async function GetCombinedConditionByConditionName(conditionName: string) {
+  try {
+    const worker = await InitializeWorker();
+    const query = `SELECT * FROM CombinedConditions WHERE ConditionName = '${conditionName}' LIMIT 1`;
+    const result = await worker.db.query(query);
+    return result[0];
+  } catch (error) {
+    console.error("Error getting Combined Conditions: ", error);
+    throw error;
+  }
+}
