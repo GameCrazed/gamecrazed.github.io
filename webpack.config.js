@@ -51,6 +51,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: 'index.html',
+      chunks: ['main', 'loadNavbar'], // Specify the chunks needed for index.html
       inject: 'body',
     }),
     new HtmlWebpackPlugin({

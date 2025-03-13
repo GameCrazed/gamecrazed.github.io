@@ -7,13 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
 async function PopulateAdvantagesList() {
     const advantagesListElement = document.getElementById('advantagesList');
     advantagesListElement.innerHTML = '';
-    console.log("before get");
     const advantages = await GetAdvantages();
 
-    console.log("Test");
-    console.log(advantages);
     await Promise.all(advantages.map(async advantage => {
-        console.log(advantage);
         const listItem = document.createElement('li');
 
         const advantageContainer = document.createElement('div'); // Create a container for advantage name and checkbox
@@ -43,11 +39,7 @@ async function PopulateAdvantagesList() {
         while ((match = regex.exec(descriptionHtml)) !== null) {
             const word = match[1];
             const tooltip = await GetToolTipByTag(word);
-            console.log("Tooltip: " + tooltip);
-            console.log(tooltip);
-            console.log(descriptionHtml);
             descriptionHtml = descriptionHtml.replace(`{${word}}`, `<span class="tooltip" data-tooltip-index="${tooltip.TooltipId}">${tooltip.TooltipTag}</span>`);
-            console.log(descriptionHtml);
         }
 
         const descriptionElement = document.createElement('div');
@@ -63,7 +55,6 @@ async function PopulateAdvantagesList() {
 
         // Add event listener for tooltips
         const tooltips = listItem.querySelectorAll('.tooltip');
-        console.log(tooltips);
         tooltips.forEach((tooltip) => {
             tooltip.addEventListener('click', async (event) => {
                 event.stopPropagation(); // Prevent toggling the 'expanded' class on li
@@ -127,7 +118,6 @@ function FilterAdvantages() {
 }
 
 function ShowTooltipPopup(tooltipData, event) {
-    console.log(tooltipData);
     const tooltipPopup = document.getElementById('tooltipPopup');
     const tooltipTitle = document.getElementById('tooltipTitle');
     const tooltipContent = document.getElementById('tooltipContent');
@@ -142,8 +132,7 @@ function ShowTooltipPopup(tooltipData, event) {
 
     // Adjust if the tooltip goes off-screen
     const rect = tooltipPopup.getBoundingClientRect();
-    console.log("rect");
-    console.log(rect);
+    
     if (top + rect.height > window.innerHeight) {
         top = window.innerHeight - rect.height - 10;
     }
