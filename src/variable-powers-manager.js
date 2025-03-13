@@ -1,4 +1,4 @@
-import { SavePowersToCookies, RemovePowerFromCookies, LoadPowersFromCookies } from './cookie-handler.js';
+import { SavePowersToCookies, LoadPowersFromCookies } from './cookie-handler.js';
 import { GenerateGuid } from './guid-handler.js';
 
 const powers = [];
@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     RenderPowers();
 
     document.getElementById('addPowerBtn').addEventListener('click', AddPower);
+    document.getElementById('generatePowersTableBtn').addEventListener('click', GeneratePowerTable);
     document.getElementById('importPowersBtn').addEventListener('click', () => document.getElementById('importPowers').click());
     document.getElementById('importPowers').addEventListener('change', ImportPowers);
     document.getElementById('exportPowersBtn').addEventListener('click', ExportPowers);
@@ -318,8 +319,14 @@ function ImportPowers(event) {
         try {
             const importedPowers = JSON.parse(e.target.result);
             // Validate the imported data (basic validation)
-            if (Array.isArray(importedPowers) && importedPowers.every(item => item.name && item.description)) {
+            const requiredFields = ['powerId', 'name', 'description', 'extras', 'flaws', 'totalCost', 'included'];
+            const isValid = Array.isArray(importedPowers) && importedPowers.every(item =>
+                requiredFields.every(field => field in item)
+            );
+
+            if (isValid) {
                 powers.splice(0, powers.length, ...importedPowers);
+                SavePowersToCookies(powers); // Save the imported powers to cookies
                 RenderPowers();
             } else {
                 alert("Invalid JSON file structure.");
