@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: {
     main: './src/index.ts',
-    myscripts: './src/myscripts.js',
+    index: './src/index.js',
     cookieHandler: './src/cookie-handler.js',
     throwingDistanceCalculator: './src/throwing-distance-calculator.js',
     measurementsTable: './src/measurements-table.js',

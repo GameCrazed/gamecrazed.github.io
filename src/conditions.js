@@ -30,29 +30,36 @@ function CheckCookiesForCreatures() {
     const creatures = LoadCreaturesFromCookies();
 
     if (creatures) {
-            creatures.forEach(async creature => {
-                const creatureDiv = await CreateCreatureDiv(creature.id);
-    
-                // Set the saved name and injuries
-                const nameInput = creatureDiv.querySelector(".creature-name-input");
-                nameInput.value = creature.name;
-    
-                const injuryInput = creatureDiv.querySelector(".creature-injury-input");
-                injuryInput.value = creature.injuries;
-    
-                // Append the creature to the list first
-                creaturesList.appendChild(creatureDiv);
-    
-                // Simulate button clicks to activate conditions
-                for (const conditionName of creature.activeConditions) {
-                    const button = creatureDiv.querySelector(`button[data-condition="${conditionName}"]`);
-                    if (button) {
-                        button.classList.add("red");
-                        await AddEffectToCreature(creature.id, conditionName, false);
-                    }
+        creatures.forEach(async creature => {
+            const creatureDiv = await CreateCreatureDiv(creature.id);
+
+            // Set the saved name and injuries
+            const nameInput = creatureDiv.querySelector(".creature-name-input");
+            nameInput.value = creature.name;
+
+            const injuryInput = creatureDiv.querySelector(".creature-injury-input");
+            injuryInput.value = creature.injuries;
+
+            // Append the creature to the list first
+            const creaturesList = document.getElementById("creaturesList");
+            creaturesList.appendChild(creatureDiv);
+
+            // Simulate button clicks to activate conditions
+            for (const conditionName of creature.activeConditions) {
+                const button = creatureDiv.querySelector(`button[data-condition="${conditionName}"]`);
+                if (button) {
+                    button.classList.add("red");
+                    const isCombinedCondition = await IsCombinedCondition(conditionName);
+                    await AddEffectToCreature(creature.id, conditionName, isCombinedCondition);
                 }
-            });
-        }
+            }
+        });
+    }
+}
+
+async function IsCombinedCondition(conditionName) {
+    const combinedConditions = await GetCombinedConditions();
+    return combinedConditions.some(condition => condition.ConditionName === conditionName);
 }
 
 function CreateListItem(condition) {
@@ -133,6 +140,7 @@ function CreateCreatureHeader(creatureId, creatureDiv) {
     creatureNameInput.type = "text";
     creatureNameInput.placeholder = "Enter creature name...";
     creatureNameInput.classList.add("creature-name-input");
+    creatureNameInput.addEventListener("input", SaveCreaturesToCookies); // Add event listener
 
     creatureHeader.appendChild(deleteButton);
     creatureHeader.appendChild(creatureTitle);
@@ -145,6 +153,7 @@ function CreateCreatureHeader(creatureId, creatureDiv) {
     creatureInjuryInput.type = "text";
     creatureInjuryInput.placeholder = "0";
     creatureInjuryInput.classList.add("creature-injury-input");
+    creatureInjuryInput.addEventListener("input", SaveCreaturesToCookies); // Add event listener
 
     creatureHeader.appendChild(creatureInjuryTitle);
     creatureHeader.appendChild(creatureInjuryInput);
