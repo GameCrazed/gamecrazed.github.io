@@ -7,7 +7,12 @@ module.exports = {
   entry: {
     main: './src/index.ts',
     myscripts: './src/myscripts.js',
+    cookieHandler: './src/cookie-handler.js',
     throwingDistanceCalculator: './src/throwing-distance-calculator.js',
+    measurementsTable: './src/measurements-table.js',
+    advantages: './src/advantages.js',
+    conditions: './src/conditions.js',
+    variablePowersManager: './src/variable-powers-manager.js',
     loadNavbar: './src/load-navbar.js',
   },
   output: {
@@ -52,6 +57,30 @@ module.exports = {
       template: './throwing-distance-calculator.html',
       filename: 'throwing-distance-calculator.html',
       chunks: ['throwingDistanceCalculator', 'loadNavbar'],
+      inject: 'body',
+    }),
+    new HtmlWebpackPlugin({
+      template: './measurements-table.html',
+      filename: 'measurements-table.html',
+      chunks: ['measurementsTable', 'loadNavbar'],
+      inject: 'body',
+    }),
+    new HtmlWebpackPlugin({
+      template: './advantages.html',
+      filename: 'advantages.html',
+      chunks: ['advantages', 'loadNavbar'],
+      inject: 'body',
+    }),
+    new HtmlWebpackPlugin({
+      template: './conditions.html',
+      filename: 'conditions.html',
+      chunks: ['conditions', 'loadNavbar'],
+      inject: 'body',
+    }),
+    new HtmlWebpackPlugin({
+      template: './variable-powers-manager.html',
+      filename: 'variable-powers-manager.html',
+      chunks: ['variablePowersManager', 'loadNavbar', 'main'],
       inject: 'body',
     }),
     new MiniCssExtractPlugin({
