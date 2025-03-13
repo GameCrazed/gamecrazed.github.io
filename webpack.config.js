@@ -7,6 +7,8 @@ module.exports = {
   entry: {
     main: './src/index.ts',
     myscripts: './src/myscripts.js',
+    throwingDistanceCalculator: './src/throwing-distance-calculator.js',
+    loadNavbar: './src/load-navbar.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -46,12 +48,19 @@ module.exports = {
       filename: 'index.html',
       inject: 'body',
     }),
+    new HtmlWebpackPlugin({
+      template: './throwing-distance-calculator.html',
+      filename: 'throwing-distance-calculator.html',
+      chunks: ['throwingDistanceCalculator', 'loadNavbar'],
+      inject: 'body',
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
     new CopyWebpackPlugin({
       patterns: [
         { from: 'MandMDataStore.sqlite3', to: 'MandMDataStore.sqlite3' },
+        { from: 'navbar.html', to: 'navbar.html' },
       ],
     }),
   ],
