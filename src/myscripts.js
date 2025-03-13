@@ -3,14 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('degreeCalcBtn').addEventListener('click', calculateDegrees);
 });
 
-export function generateGuid() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-}
-
-//#region /*----------Degrees Calculator Tab Functions----------*/
-
 function calculateDegrees() {
     const dc = parseInt(document.getElementById('dc').value);
     const roll = parseInt(document.getElementById('roll').value);
@@ -50,38 +42,3 @@ function calculateDegrees() {
 
     resultDiv.textContent = resultMessage;
 }
-//#endregion
-
-//#region /*----------Powers Tab Functions----------*/
-
-function LoadPowersFromLocalStorage() {
-    const localPowers = JSON.parse(localStorage.getItem('powers')) || [];
-
-    if (localPowers !== undefined && localPowers.length != 0) {
-        powers.push(...localPowers);
-    }
-
-    RenderPowers();
-}
-
-function savePowersToLocalStorage(power) {
-    if (power !== null && typeof power === 'object') {
-        powers.push(power);
-    }
-    localStorage.setItem('powers', JSON.stringify(powers));
-}
-
-
-
-function removePowerFromLocalStorage(powerId) {
-    if (powerId !== null) {
-        const index = powers.findIndex(power => power.powerId === powerId);
-
-        if (index > -1) {
-            powers.splice(index, 1);
-        }
-
-        localStorage.setItem('powers', JSON.stringify(powers));
-    }
-}
-//#endregion

@@ -1,5 +1,5 @@
 import { SavePowersToCookies, RemovePowerFromCookies } from './cookie-handler.js';
-import { generateGuid } from './myscripts.js';
+import { GenerateGuid } from './guid-handler.js';
 
 const powers = [];
 
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function AddPower() {
     let power = {
-        powerId: generateGuid(),
+        powerId: GenerateGuid(),
         name: '',
         description: '',
         extras: '',

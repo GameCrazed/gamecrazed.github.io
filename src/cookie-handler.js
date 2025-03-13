@@ -44,33 +44,8 @@ export function SaveCreaturesToCookies() {
 }
 
 export function LoadCreaturesFromCookies() {
-    const creaturesList = document.getElementById("creaturesList");
     const creatures = JSON.parse(GetCookie("creatureConditions"));
-
-    if (creatures) {
-        creatures.forEach(async creature => {
-            const creatureDiv = await CreateCreatureDiv(creature.id);
-
-            // Set the saved name and injuries
-            const nameInput = creatureDiv.querySelector(".creature-name-input");
-            nameInput.value = creature.name;
-
-            const injuryInput = creatureDiv.querySelector(".creature-injury-input");
-            injuryInput.value = creature.injuries;
-
-            // Append the creature to the list first
-            creaturesList.appendChild(creatureDiv);
-
-            // Simulate button clicks to activate conditions
-            for (const conditionName of creature.activeConditions) {
-                const button = creatureDiv.querySelector(`button[data-condition="${conditionName}"]`);
-                if (button) {
-                    button.classList.add("red");
-                    await addEffectToCreature(creature.id, conditionName, false);
-                }
-            }
-        });
-    }
+    return creatures;
 }
 
 export function LoadPowersFromCookies() {

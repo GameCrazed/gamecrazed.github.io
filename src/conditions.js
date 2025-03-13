@@ -1,5 +1,5 @@
 import { GetBasicConditions, GetCombinedConditions, GetCombinedConditionByConditionName, GetBasicConditionByConditionName } from "./index.ts";
-import { generateGuid } from "./myscripts.js";
+import { GenerateGuid } from "./guid-handler.js";
 import { SaveCreaturesToCookies, LoadCreaturesFromCookies } from "./cookie-handler.js";
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -23,7 +23,36 @@ async function PopulateConditionsList() {
         });
     }
 
-    LoadCreaturesFromCookies();
+    CheckCookiesForCreatures();
+}
+
+function CheckCookiesForCreatures() {
+    const creatures = LoadCreaturesFromCookies();
+
+    if (creatures) {
+            creatures.forEach(async creature => {
+                const creatureDiv = await CreateCreatureDiv(creature.id);
+    
+                // Set the saved name and injuries
+                const nameInput = creatureDiv.querySelector(".creature-name-input");
+                nameInput.value = creature.name;
+    
+                const injuryInput = creatureDiv.querySelector(".creature-injury-input");
+                injuryInput.value = creature.injuries;
+    
+                // Append the creature to the list first
+                creaturesList.appendChild(creatureDiv);
+    
+                // Simulate button clicks to activate conditions
+                for (const conditionName of creature.activeConditions) {
+                    const button = creatureDiv.querySelector(`button[data-condition="${conditionName}"]`);
+                    if (button) {
+                        button.classList.add("red");
+                        await AddEffectToCreature(creature.id, conditionName, false);
+                    }
+                }
+            });
+        }
 }
 
 function CreateListItem(condition) {
@@ -52,7 +81,7 @@ function CreateListItem(condition) {
 
 async function AddConditionCreature() {
     const creaturesList = document.getElementById("creaturesList");
-    const creatureId = generateGuid();
+    const creatureId = GenerateGuid();
     const creatureDiv = await CreateCreatureDiv(creatureId);
 
     creaturesList.appendChild(creatureDiv);
