@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: './src/index.ts',
+    databaseHandler: './src/database-handler.ts',
     index: './src/index.js',
     cookieHandler: './src/cookie-handler.js',
     throwingDistanceCalculator: './src/throwing-distance-calculator.js',
@@ -51,7 +51,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: 'index.html',
-      chunks: ['main', 'loadNavbar'], // Specify the chunks needed for index.html
+      chunks: ['databaseHandler', 'loadNavbar'],
       inject: 'body',
     }),
     new HtmlWebpackPlugin({
@@ -81,7 +81,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './variable-powers-manager.html',
       filename: 'variable-powers-manager.html',
-      chunks: ['variablePowersManager', 'loadNavbar', 'main'],
+      chunks: ['variablePowersManager', 'loadNavbar', 'databaseHandler'],
       inject: 'body',
     }),
     new MiniCssExtractPlugin({

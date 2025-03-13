@@ -1,4 +1,4 @@
-import { GetMeasurementByMassLbs, GetMeasurementByRank } from './index.ts';
+import { GetMeasurementByMassLbs, GetMeasurementByRank } from './database-handler.ts';
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('calcThrowDist').addEventListener('click', calculateThrowingDistance);

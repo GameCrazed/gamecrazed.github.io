@@ -1,4 +1,4 @@
-import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "./index.ts";
+import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "./database-handler.ts";
 
 document.addEventListener('DOMContentLoaded', function() {
     PopulateAdvantagesList();
@@ -153,6 +153,7 @@ let offsetX, offsetY;
 
 // Function to initialize dragging
 function initDrag(e) {
+    const tooltipPopup = document.getElementById('tooltipPopup');
     isDragging = true;
     offsetX = e.clientX - tooltipPopup.offsetLeft;
     offsetY = e.clientY - tooltipPopup.offsetTop;
@@ -161,6 +162,8 @@ function initDrag(e) {
 // Function to handle mouse movement during dragging
 function doDrag(e) {
     if (isDragging) {
+        const tooltipPopup = document.getElementById('tooltipPopup');
+
         let newX = e.clientX - offsetX;
         let newY = e.clientY - offsetY;
 

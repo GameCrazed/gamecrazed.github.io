@@ -1,4 +1,4 @@
-import { GetBasicConditions, GetCombinedConditions, GetCombinedConditionByConditionName, GetBasicConditionByConditionName } from "./index.ts";
+import { GetBasicConditions, GetCombinedConditions, GetCombinedConditionByConditionName, GetBasicConditionByConditionName } from "./database-handler.ts";
 import { GenerateGuid } from "./guid-handler.js";
 import { SaveCreaturesToCookies, LoadCreaturesFromCookies } from "./cookie-handler.js";
 

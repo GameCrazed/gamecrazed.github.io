@@ -1,4 +1,4 @@
-import { LoadMeasurements } from './index.ts';
+import { LoadMeasurements } from './database-handler.ts';
 
 document.addEventListener('DOMContentLoaded', function() {
     PopulateMeasurementsTable();
