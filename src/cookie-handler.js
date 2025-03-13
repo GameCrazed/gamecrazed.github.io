@@ -49,13 +49,9 @@ export function LoadCreaturesFromCookies() {
 }
 
 export function LoadPowersFromCookies() {
-    const localPowers = JSON.parse(GetCookie('powers')) || [];
+    const powers = JSON.parse(GetCookie('powers')) || [];
 
-    if (localPowers !== undefined && localPowers.length != 0) {
-        powers.push(...localPowers);
-    }
-
-    RenderPowers();
+    return powers;
 }
 
 export function SavePowersToCookies(powers) {

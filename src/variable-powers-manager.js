@@ -1,9 +1,10 @@
-import { SavePowersToCookies, RemovePowerFromCookies } from './cookie-handler.js';
+import { SavePowersToCookies, RemovePowerFromCookies, LoadPowersFromCookies } from './cookie-handler.js';
 import { GenerateGuid } from './guid-handler.js';
 
 const powers = [];
 
 document.addEventListener('DOMContentLoaded', function() {
+    powers.push(...LoadPowersFromCookies());
     RenderPowers();
 
     document.getElementById('addPowerBtn').addEventListener('click', AddPower);
@@ -23,8 +24,8 @@ function AddPower() {
         included: false
     };
 
-    powers.push(power); // Add the new power to the powers array
-    SavePowersToCookies(powers); // Pass the powers array to the function
+    powers.push(power);
+    SavePowersToCookies(powers);
     RenderPowers();
 }
 
@@ -79,7 +80,6 @@ function GetPowerHtml(power) {
         return;
     }
 
-    //-----Create the encompassing powerBox div-----//
     // Create the main powerBox div
     const powerBoxDiv = document.createElement('div');
     powerBoxDiv.classList.add('powerBox');
@@ -89,8 +89,7 @@ function GetPowerHtml(power) {
         powerBoxDiv.classList.add('power-active');
     }
 
-    //-----Create the Power Header section-----//
-    // Create the powerHeader Div
+    // Create the Power Header section
     powerBoxDiv.appendChild((function () {
         const powerHeaderDiv = document.createElement('div');
         powerHeaderDiv.className = 'powerHeader';
@@ -213,7 +212,7 @@ function GetPowerHtml(power) {
             })());
         });
 
-        return powerCost
+        return powerCost;
     })());
 
     ////-----Create the Power Description section-----//
@@ -250,7 +249,7 @@ function GetPowerHtml(power) {
             })());
         });
 
-        return powerDescription
+        return powerDescription;
     })());
 
     return powerBoxDiv;
@@ -266,17 +265,21 @@ function UpdatePower(powerId, field, value) {
 
     powers[index][field] = field === 'totalCost' ? parseInt(value) || 0 : value;
 
+    SavePowersToCookies(powers); // Save the updated powers array to cookies
     RenderPowers();
-    SavePowersToCookies(powers);
 }
 
 function RemovePower(powerId) {
-    const powerElement = document.getElementById(powerId);
-    if (powerElement) {
-        powerElement.remove();
-        RemovePowerFromCookies(powerId);
+    const index = powers.findIndex(power => power.powerId === powerId);
+
+    if (index === -1) {
+        console.error(`Power with powerId '${powerId}' not found`);
+        return;
     }
-    RenderPowers();
+
+    powers.splice(index, 1); // Remove the power from the array
+    SavePowersToCookies(powers); // Save the updated powers array to cookies
+    RenderPowers(); // Re-render the powers
 }
 
 function UpdateTotalPowersCost() {
