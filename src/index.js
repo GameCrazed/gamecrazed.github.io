@@ -1,9 +1,9 @@
 //#region /*----------Core Functions----------*/
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('degreeCalcBtn').addEventListener('click', calculateDegrees);
+    document.getElementById('degreeCalcBtn').addEventListener('click', CalculateDegrees);
 });
 
-function calculateDegrees() {
+function CalculateDegrees() {
     const dc = parseInt(document.getElementById('dc').value);
     const roll = parseInt(document.getElementById('roll').value);
     const resultDiv = document.getElementById('result');

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="M&M Useful Tools - Measurements Table">
     <title>M&M Useful Tools</title>
 </head>
 <body>
@@ -12,16 +13,16 @@
         <table>
             <thead>
                 <tr>
-                    <th colspan="5" style="background-color: transparent; border: 1px solid transparent; position: relative; ">
-                        <button id="toggleButton" value="imperial">Toggle</button>
+                    <th colspan="5" style="background-color: transparent; border: 1px solid transparent; position: relative;">
+                        <button id="toggleButton" value="imperial" aria-label="Toggle between Imperial and Metric">Toggle</button>
                     </th>
                 </tr>
                 <tr>
-                    <th>Rank</th>
-                    <th>Mass</th>
-                    <th>Time</th>
-                    <th>Distance</th>
-                    <th>Volume</th>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Mass</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Distance</th>
+                    <th scope="col">Volume</th>
                 </tr>
             </thead>
             <tbody id="measurementsTableBody">

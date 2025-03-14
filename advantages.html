@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="M&M Useful Tools - Advantages List">
     <title>M&M Useful Tools</title>
 </head>
 <body>
@@ -10,15 +11,15 @@
     <div class="container">
         <h2>Advantages List</h2>
         <div class="search-container">
-            <input type="text" id="searchAdvantages" placeholder="Enter advantage name...">
+            <input type="text" id="searchAdvantages" placeholder="Enter advantage name..." aria-label="Search Advantages">
             <label for="filterAdvantagesCheckbox">
-                <input type="checkbox" id="filterAdvantagesCheckbox">
+                <input type="checkbox" id="filterAdvantagesCheckbox" aria-label="Filter Marked Advantages">
                 Filter Marked Advantages
             </label>
         </div>
-        <ul id="advantagesList"></ul>
+        <ul id="advantagesList" aria-live="polite"></ul>
     </div>
-    <!--TODO: CLEAN THIS UP-->
+    
     <div id="tooltipPopup" class="tooltip-popup">
         <div class="tooltip-content"><strong id="tooltipTitle" class="tooltipTitle"></strong><p id="tooltipContent"></p></div>
     </div>

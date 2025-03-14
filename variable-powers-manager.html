@@ -10,18 +10,19 @@
     <div class="container container-max">
         <h2>Powers</h2>
         <div>
-            <label>Total Active Power Point Cost: <span id="totalPointCost">0</span></label>
+            <label>Total Active Power Point Cost: <span id="totalPointCost" aria-live="polite">0</span></label>
         </div>
         <div>
             <label for="powersNumColumns">Enter number of columns:</label>
             <input type="number" id="powersNumColumns" placeholder="Enter number of columns">
-            <button id="generatePowersTableBtn">Generate Table</button>
+            <button id="generatePowersTableBtn" aria-label="Generate Powers Table">Generate Table</button>
 
-            <button id="importPowersBtn">Import Powers</button>
-            <button id="exportPowersBtn">Export Powers</button>
+            <button id="importPowersBtn" aria-label="Import Powers">Import Powers</button>
+            <button id="exportPowersBtn" aria-label="Export Powers">Export Powers</button>
+            <label for="importPowers" style="display: none;">Import Powers File</label>
             <input type="file" id="importPowers" accept=".json" style="display: none;">
         </div>
-        <button id="addPowerBtn">Add Power</button>
+        <button id="addPowerBtn" aria-label="Add Power">Add Power</button>
 
         <div id="powersTableContainer"></div>
     </div>
