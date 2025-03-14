@@ -2,12 +2,16 @@ import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "./database-handl
 
 document.addEventListener('DOMContentLoaded', function() {
     PopulateAdvantagesList();
+    document.getElementById('filterAdvantagesCheckbox').addEventListener('change', ReFilterAdvantages);
+    document.getElementById('searchAdvantages').addEventListener('input', ReFilterAdvantages);
 });
+
+let advantages = [];
 
 async function PopulateAdvantagesList() {
     const advantagesListElement = document.getElementById('advantagesList');
     advantagesListElement.innerHTML = '';
-    const advantages = await GetAdvantages();
+    advantages = await GetAdvantages();
 
     await Promise.all(advantages.map(async advantage => {
         const listItem = document.createElement('li');
@@ -47,7 +51,7 @@ async function PopulateAdvantagesList() {
         descriptionElement.innerHTML = descriptionHtml;
         listItem.appendChild(descriptionElement);
 
-        listItem.addEventListener('click', () => {
+        listItem.addEventListener('click', (event) => {
             if (!event.target.matches('input[type="checkbox"]')) {
                 listItem.classList.toggle('expanded');
             }
@@ -64,55 +68,33 @@ async function PopulateAdvantagesList() {
             });
         });
 
-
         return listItem;
     })).then(listItems => {
         listItems.forEach(listItem => {
             advantagesListElement.appendChild(listItem);
         });
     });
+
+    ReFilterAdvantages();
 }
 
 function ReFilterAdvantages() {
     const showSelectedOnly = document.getElementById('filterAdvantagesCheckbox').checked;
-
-    if (showSelectedOnly) {
-        FilterAdvantages();
-    }
-}
-
-function FilterAdvantages() {
-    const searchInput = document.getElementById('searchAdvantages');
-    const filterValue = searchInput.value.trim().toLowerCase();
+    const searchInput = document.getElementById('searchAdvantages').value.trim().toLowerCase();
     const listItems = document.querySelectorAll('#advantagesList li');
-
-    const showSelectedOnly = document.getElementById('filterAdvantagesCheckbox').checked;
 
     listItems.forEach(item => {
         const text = item.querySelector('strong').textContent.trim().toLowerCase();
-        const isSelected = advantages.find(advantage => advantage.Name.toLowerCase() === text.toLowerCase());
+        const advantage = advantages.find(adv => adv.AdvantageName.toLowerCase() === text);
+        const isSelected = advantage ? advantage.Selected : false;
 
-        if (showSelectedOnly && (!isSelected || !isSelected.Selected)) {
-            item.style.visibility = 'hidden';
-            item.style.height = '0';
-            item.style.border = '0';
-            item.style.margin = '0';
-            item.style.padding = '0';
+        const matchesSearch = text.includes(searchInput);
+        const matchesFilter = !showSelectedOnly || isSelected;
+
+        if (matchesSearch && matchesFilter) {
+            item.style.display = '';
         } else {
-            const match = text.includes(filterValue);
-            if (match) {
-                item.style.visibility = 'visible';
-                item.style.height = '';
-                item.style.border = '';
-                item.style.margin = '';
-                item.style.padding = '';
-            } else {
-                item.style.visibility = 'hidden';
-                item.style.height = '0';
-                item.style.border = '0';
-                item.style.margin = '0';
-                item.style.padding = '0';
-            }
+            item.style.display = 'none';
         }
     });
 }
@@ -143,7 +125,6 @@ function ShowTooltipPopup(tooltipData, event) {
     tooltipPopup.style.left = left + 'px';
     tooltipPopup.style.top = top + 'px';
 }
-
 
 //---------------------------------------------------CLEAN THIS UP!
 //Including resetting its position when the click-out function is called.
@@ -187,6 +168,7 @@ function stopDrag() {
 }
 
 // Event listeners for dragging
+const tooltipPopup = document.getElementById('tooltipPopup');
 tooltipPopup.addEventListener('mousedown', initDrag);
 document.addEventListener('mousemove', doDrag);
 document.addEventListener('mouseup', stopDrag);
