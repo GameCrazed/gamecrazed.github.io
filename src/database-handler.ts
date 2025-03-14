@@ -64,12 +64,8 @@ export async function GetMeasurementByRank(rank: number) {
 export async function GetAdvantages() {
   try {
     const worker = await InitializeWorker();
-  console.log("Before query");
-  const query = `SELECT * FROM Advantages ORDER BY AdvantageName`;
-  const results = await worker.db.query(query);
-
-  console.log("result");
-  console.log(results);
+    const query = `SELECT * FROM Advantages ORDER BY AdvantageName`;
+    const results = await worker.db.query(query);
     return results;
   } catch (error) {
     console.error("Error getting Advantages: ", error);
@@ -80,13 +76,9 @@ export async function GetAdvantages() {
 export async function GetToolTipByTag(tagName: string) {
   try {
     const worker = await InitializeWorker();
-  console.log("Before1 query");
-  const query = `SELECT * FROM Tooltips WHERE ToolTipTag = '${tagName}' LIMIT 1`;
-  const result = await worker.db.query(query);
-
-  console.log("result1");
-  console.log(result);
-  return result[0];
+    const query = `SELECT * FROM Tooltips WHERE ToolTipTag = '${tagName}' LIMIT 1`;
+    const result = await worker.db.query(query);
+    return result[0];
   } catch (error) {
     console.error("Error getting ToolTip: ", error);
     throw error;
@@ -96,13 +88,9 @@ export async function GetToolTipByTag(tagName: string) {
 export async function GetToolTipById(tooltipId: number) {
   try {
     const worker = await InitializeWorker();
-  console.log("Before2 query");
-  const query = `SELECT * FROM Tooltips WHERE TooltipId = '${tooltipId}' LIMIT 1`;
-  const result = await worker.db.query(query);
-
-  console.log("result2");
-  console.log(result);
-  return result[0];
+    const query = `SELECT * FROM Tooltips WHERE TooltipId = '${tooltipId}' LIMIT 1`;
+    const result = await worker.db.query(query);
+    return result[0];
   } catch (error) {
     console.error("Error getting Tooltip: ", error);
     throw error;

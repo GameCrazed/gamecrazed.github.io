@@ -3,131 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="M&M Useful Tools - Degrees of Success and Failure Calculator">
     <title>M&M Useful Tools</title>
 </head>
 <body>
-    <div class="header">
-        <h1>Mutants and Masterminds Useful Tools</h1>
-
-        <div class="topnav">
-            <button id="degreeCalcTabNavBtn">Degrees Calculator</button>
-            <button id="throwingDistCalcTabNavBtn">Throwing Distance Calculator</button>
-            <button id="measurementsTabNavBtn">Measurements Table</button>
-            <button id="advantagesTabNavBtn">Advantages</button>
-            <button id="conditionsTabNavBtn">Conditions</button>
-            <button id="powersTabNavBtn">Variable Powers Manager</button>
-        </div>
-    </div>
+    <div id="navbar-container"></div>
     <div>
         <div id="degreesTab" class="tab active">
             <div class="container container-small">
                 <h2>Degrees of Success and Failure Calculator</h2>
                 <label for="dc">Enter DC (Difficulty Class):</label>
-                <input type="number" id="dc" placeholder="Enter DC">
+                <input type="number" id="dc" placeholder="Enter DC" aria-label="Enter Difficulty Class">
 
                 <label for="roll">Enter Player's Rolled Value:</label>
-                <input type="number" id="roll" placeholder="Enter Player's Roll">
+                <input type="number" id="roll" placeholder="Enter Player's Roll" aria-label="Enter Player's Roll">
 
-                <button id="degreeCalcBtn">Calculate</button>
+                <button id="degreeCalcBtn" aria-label="Calculate Degrees of Success or Failure">Calculate</button>
 
-                <div class="result" id="result"></div>
-            </div>
-        </div>
-        <div id="throwingTab" class="tab">
-            <div class="container container-small">
-                <h2>Throwing Distance Calculator</h2>
-                <label for="strength">Enter Strength Rank:</label>
-                <input type="number" id="strength" placeholder="Enter Strength Rank">
-
-                <label for="massRank">Enter Mass Rank (if known):</label>
-                <input type="number" id="massRank" placeholder="Enter Mass Rank">
-
-                <label for="throwingMassKg">Or Enter Weight (kg):</label>
-                <input type="number" id="throwingMassKg" placeholder="Enter Weight in kg">
-
-                <label for="throwingMassLbs">Or Enter Weight (lbs):</label>
-                <input type="number" id="throwingMassLbs" placeholder="Enter Weight in lbs">
-
-                <button id="calcThrowDist">Calculate Throwing Distance</button>
-
-                <div class="result" id="throwingResult"></div>
-            </div>
-        </div>
-        <div id="measurementsTab" class="tab">
-            <div class="container">
-                <h2>Measurements Table</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="5" style="background-color: transparent; border: 1px solid transparent; position: relative; ">
-                                <button onclick="populateMeasurementsTable()" id="toggleButton" value="imperial">Toggle</button>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Mass</th>
-                            <th>Time</th>
-                            <th>Distance</th>
-                            <th>Volume</th>
-                        </tr>
-                    </thead>
-                    <tbody id="measurementsTableBody">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div id="advantagesTab" class="tab">
-            <div class="container">
-                <h2>Advantages List</h2>
-                <div class="search-container">
-                    <input type="text" id="searchAdvantages" placeholder="Enter advantage name...">
-                    <label for="filterAdvantagesCheckbox">
-                        <input type="checkbox" id="filterAdvantagesCheckbox">
-                        Filter Marked Advantages
-                    </label>
-                </div>
-                <ul id="advantagesList"></ul>
-            </div>
-            <!--TODO: CLEAN THIS UP-->
-            <div id="tooltipPopup" class="tooltip-popup">
-                <div class="tooltip-content"><strong id="tooltipTitle" class="tooltipTitle"></strong><p id="tooltipContent"></p></div>
-            </div>
-        </div>
-        <div id="conditionsTab" class="tab">
-            <div class="container container-wide">
-                <h2>Conditions</h2>
-                <div class="split">
-                    <div class="half">
-                        <h3>Base Conditions</h3>
-                        <ul id="baseConditionsUList" class="conditionsList"></ul>
-                        <h3>Combined Conditions</h3>
-                        <ul id="combinedConditionsUList" class="conditionsList"></ul>
-                    </div>
-                    <div class="half">
-                        <button id="addCreatureBtn">Add Creature</button>
-                        <ul id="creaturesList"></ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="powersTab" class="tab">
-            <div class="container container-max">
-                <h2>Powers</h2>
-                <div>
-                    <label>Total Active Power Point Cost: <span id="totalPointCost">0</span></label>
-                </div>
-                <div>
-                    <label for="powersNumColumns">Enter number of columns:</label>
-                    <input type="number" id="powersNumColumns" placeholder="Enter number of columns">
-                    <button onclick="generatePowerTable()">Generate Table</button>
-
-                    <button id="importPowersBtn">Import Powers</button>
-                    <button id="exportPowersBtn">Export Powers</button>
-                    <input type="file" id="importPowers" accept=".json" style="display: none;">
-                </div>
-                <button id="addPowerBtn">Add Power</button>
-
-                <div id="powersTableContainer"></div>
+                <div class="result" id="result" aria-live="polite"></div>
             </div>
         </div>
     </div>
