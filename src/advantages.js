@@ -13,7 +13,7 @@ async function PopulateAdvantagesList() {
     advantagesListElement.innerHTML = '';
     advantages = await GetAdvantages();
 
-    await Promise.all(advantages.map(async advantage => {
+    advantages.forEach(advantage => {
         const listItem = document.createElement('li');
 
         const advantageContainer = document.createElement('div'); // Create a container for advantage name and checkbox
@@ -35,44 +35,42 @@ async function PopulateAdvantagesList() {
 
         listItem.appendChild(advantageContainer);
 
-        let descriptionHtml = advantage.Description;
-
-        // Use a regular expression to find all instances of words within {}
-        const regex = /\{(.*?)\}/g;
-        let match;
-        while ((match = regex.exec(descriptionHtml)) !== null) {
-            const word = match[1];
-            const tooltip = await GetToolTipByTag(word);
-            descriptionHtml = descriptionHtml.replace(`{${word}}`, `<span class="tooltip" data-tooltip-index="${tooltip.TooltipId}">${tooltip.TooltipTag}</span>`);
-        }
-
-        const descriptionElement = document.createElement('div');
-        descriptionElement.className = 'description';
-        descriptionElement.innerHTML = descriptionHtml;
-        listItem.appendChild(descriptionElement);
-
-        listItem.addEventListener('click', (event) => {
+        // Add event listener to load description on expand
+        listItem.addEventListener('click', async (event) => {
             if (!event.target.matches('input[type="checkbox"]')) {
                 listItem.classList.toggle('expanded');
+                if (listItem.classList.contains('expanded') && !listItem.querySelector('.description')) {
+                    let descriptionHtml = advantage.Description;
+
+                    // Use a regular expression to find all instances of words within {}
+                    const regex = /\{(.*?)\}/g;
+                    let match;
+                    while ((match = regex.exec(descriptionHtml)) !== null) {
+                        const word = match[1];
+                        const tooltip = await GetToolTipByTag(word);
+                        descriptionHtml = descriptionHtml.replace(`{${word}}`, `<span class="tooltip" data-tooltip-index="${tooltip.TooltipId}">${tooltip.TooltipTag}</span>`);
+                    }
+
+                    const descriptionElement = document.createElement('div');
+                    descriptionElement.className = 'description';
+                    descriptionElement.innerHTML = descriptionHtml;
+                    listItem.appendChild(descriptionElement);
+
+                    // Add event listener for tooltips
+                    const tooltips = listItem.querySelectorAll('.tooltip');
+                    tooltips.forEach((tooltip) => {
+                        tooltip.addEventListener('click', async (event) => {
+                            event.stopPropagation(); // Prevent toggling the 'expanded' class on li
+                            const tooltipIndex = event.target.getAttribute('data-tooltip-index');
+                            const tooltip = await GetToolTipById(tooltipIndex);
+                            ShowTooltipPopup(tooltip, event);
+                        });
+                    });
+                }
             }
         });
 
-        // Add event listener for tooltips
-        const tooltips = listItem.querySelectorAll('.tooltip');
-        tooltips.forEach((tooltip) => {
-            tooltip.addEventListener('click', async (event) => {
-                event.stopPropagation(); // Prevent toggling the 'expanded' class on li
-                const tooltipIndex = event.target.getAttribute('data-tooltip-index');
-                const tooltip = await GetToolTipById(tooltipIndex);
-                ShowTooltipPopup(tooltip, event);
-            });
-        });
-
-        return listItem;
-    })).then(listItems => {
-        listItems.forEach(listItem => {
-            advantagesListElement.appendChild(listItem);
-        });
+        advantagesListElement.appendChild(listItem);
     });
 
     ReFilterAdvantages();
