@@ -1,3 +1,5 @@
+import { GenerateGuid } from "./guid-handler";
+
 // Helper function to set a cookie
 function SetCookie(name: string, value: string, days: number): void {
     const date = new Date();
@@ -58,12 +60,31 @@ export function LoadCreaturesFromCookies(): Creature[] | null {
 
 interface Power {
     powerId: string;
-    // Add other properties of Power if needed
+    name: string;
+    description: string;
+    extras: string;
+    flaws: string;
+    totalCost: number;
+    included: boolean;
+    ranks: number;
+    ppPerRank: number;
+    miscPP: number;
 }
 
 export function LoadPowersFromCookies(): Power[] {
     const powers = GetCookie('powers');
-    return powers ? JSON.parse(powers) : [];
+    return powers ? JSON.parse(powers).map((power: Partial<Power>) => ({
+        powerId: power.powerId || GenerateGuid(),
+        name: power.name || '',
+        description: power.description || '',
+        extras: power.extras || '',
+        flaws: power.flaws || '',
+        totalCost: power.totalCost || 0,
+        included: power.included || false,
+        ranks: power.ranks || 0,
+        ppPerRank: power.ppPerRank || 0,
+        miscPP: power.miscPP || 0
+    })) : [];
 }
 
 export function SavePowersToCookies(powers: Power[]): void {

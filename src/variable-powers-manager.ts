@@ -1,28 +1,44 @@
 import { SavePowersToCookies, LoadPowersFromCookies } from './cookie-handler';
 import { GenerateGuid } from './guid-handler';
 
-const powers = [];
+interface Power {
+    powerId: string;
+    name: string;
+    description: string;
+    extras: string;
+    flaws: string;
+    totalCost: number;
+    included: boolean;
+    ranks: number;
+    ppPerRank: number;
+    miscPP: number;
+}
+
+const powers: Power[] = [];
 
 document.addEventListener('DOMContentLoaded', function() {
     powers.push(...LoadPowersFromCookies());
     RenderPowers();
 
-    document.getElementById('addPowerBtn').addEventListener('click', AddPower);
-    document.getElementById('generatePowersTableBtn').addEventListener('click', GeneratePowerTable);
-    document.getElementById('importPowersBtn').addEventListener('click', () => document.getElementById('importPowers').click());
-    document.getElementById('importPowers').addEventListener('change', ImportPowers);
-    document.getElementById('exportPowersBtn').addEventListener('click', ExportPowers);
+    document.getElementById('addPowerBtn')?.addEventListener('click', AddPower);
+    document.getElementById('generatePowersTableBtn')?.addEventListener('click', GeneratePowerTable);
+    document.getElementById('importPowersBtn')?.addEventListener('click', () => document.getElementById('importPowers')?.click());
+    document.getElementById('importPowers')?.addEventListener('change', ImportPowers);
+    document.getElementById('exportPowersBtn')?.addEventListener('click', ExportPowers);
 });
 
-function AddPower() {
-    let power = {
+function AddPower(): void {
+    const power: Power = {
         powerId: GenerateGuid(),
         name: '',
         description: '',
         extras: '',
         flaws: '',
         totalCost: 0,
-        included: false
+        included: false,
+        ranks: 0,
+        ppPerRank: 0,
+        miscPP: 0
     };
 
     powers.push(power);
@@ -30,14 +46,16 @@ function AddPower() {
     RenderPowers();
 }
 
-function RenderPowers() {
+function RenderPowers(): void {
     GeneratePowerTable();
     UpdateTotalPowersCost();
 }
 
-function GeneratePowerTable() {
-    const numColumns = document.getElementById('powersNumColumns').value || 2;
+function GeneratePowerTable(): void {
+    const numColumns = parseInt((document.getElementById('powersNumColumns') as HTMLInputElement)?.value) || 2;
     const tableContainer = document.getElementById('powersTableContainer');
+
+    if (!tableContainer) return;
 
     // Clear any existing table
     tableContainer.innerHTML = '';
@@ -61,7 +79,6 @@ function GeneratePowerTable() {
             // Check if there are enough powerBoxes
             if (powerBoxIndex < powers.length) {
                 // Append the powerBox to the cell
-
                 cell.appendChild(GetPowerHtml(powers[powerBoxIndex]));
                 powerBoxIndex++;
             }
@@ -76,10 +93,7 @@ function GeneratePowerTable() {
     tableContainer.appendChild(table);
 }
 
-function GetPowerHtml(power) {
-    if (power == null) {
-        return;
-    }
+function GetPowerHtml(power: Power): HTMLDivElement {
 
     // Create the main powerBox div
     const powerBoxDiv = document.createElement('div');
@@ -103,7 +117,7 @@ function GetPowerHtml(power) {
             powerNameInput.placeholder = 'Power Name';
             powerNameInput.value = power.name || '';
             powerNameInput.onchange = function () {
-                UpdatePower(power.powerId, 'name', this.value);
+                UpdatePower(power.powerId, 'name', (this as HTMLInputElement).value);
             };
 
             return powerNameInput;
@@ -129,7 +143,7 @@ function GetPowerHtml(power) {
                 includePowerCheckbox.className = 'includePower';
                 includePowerCheckbox.checked = power.included ? true : false;
                 includePowerCheckbox.onchange = function () {
-                    UpdatePower(power.powerId, 'included', this.checked);
+                    UpdatePower(power.powerId, 'included', (this as HTMLInputElement).checked);
                     UpdateTotalPowersCost();
                 };
 
@@ -176,7 +190,7 @@ function GetPowerHtml(power) {
             },
             {
                 labelText: 'Total',
-                inputValue: ((parseInt(power.ppPerRank || 0)) * parseInt(power.ranks || 0)) + parseInt(power.miscPP || 0),
+                inputValue: ((parseInt(power.ppPerRank?.toString() || '0')) * parseInt(power.ranks?.toString() || '0')) + parseInt(power.miscPP?.toString() || '0'),
                 powerKey: 'totalCost',
                 readonly: true
             }
@@ -200,10 +214,10 @@ function GetPowerHtml(power) {
                     costInput.type = 'text';
                     costInput.inputMode = 'numeric';
                     costInput.placeholder = costItem.labelText;
-                    costInput.value = costItem.inputValue;
+                    costInput.value = costItem.inputValue.toString();
                     costInput.readOnly = costItem.readonly || false;
                     costInput.onchange = function () {
-                        UpdatePower(power.powerId, costItem.powerKey, this.value);
+                        UpdatePower(power.powerId, costItem.powerKey as keyof Power, (this as HTMLInputElement).value);
                     };
 
                     return costInput;
@@ -244,7 +258,7 @@ function GetPowerHtml(power) {
                 textarea.placeholder = item.placeholder;
                 textarea.value = item.value;
                 textarea.onchange = function () {
-                    UpdatePower(power.powerId, item.key, this.value);
+                    UpdatePower(power.powerId, item.key as keyof Power, (this as HTMLTextAreaElement).value);
                 };
                 return textarea;
             })());
@@ -256,7 +270,7 @@ function GetPowerHtml(power) {
     return powerBoxDiv;
 }
 
-function UpdatePower(powerId, field, value) {
+function UpdatePower(powerId: string, field: keyof Power, value: any): void {
     const index = powers.findIndex(power => power.powerId === powerId);
 
     if (index === -1) {
@@ -264,13 +278,13 @@ function UpdatePower(powerId, field, value) {
         return;
     }
 
-    powers[index][field] = field === 'totalCost' ? parseInt(value) || 0 : value;
+    (powers[index][field] as any) = field === 'totalCost' ? parseInt(value) || 0 : value;
 
     SavePowersToCookies(powers); // Save the updated powers array to cookies
     RenderPowers();
 }
 
-function RemovePower(powerId) {
+function RemovePower(powerId: string): void {
     const index = powers.findIndex(power => power.powerId === powerId);
 
     if (index === -1) {
@@ -283,19 +297,22 @@ function RemovePower(powerId) {
     RenderPowers(); // Re-render the powers
 }
 
-function UpdateTotalPowersCost() {
+function UpdateTotalPowersCost(): void {
     let totalCost = 0;
-    document.querySelectorAll('.powerBox').forEach(item => {
-        const includePowerCheckbox = item.querySelector('.includePower');
-        const totalPointCostInput = item.querySelector('#totalCost');
+    document.querySelectorAll<HTMLDivElement>('.powerBox').forEach(item => {
+        const includePowerCheckbox = item.querySelector<HTMLInputElement>('.includePower');
+        const totalPointCostInput = item.querySelector<HTMLInputElement>('#totalCost');
         if (includePowerCheckbox && includePowerCheckbox.checked) {
-            totalCost += parseInt(totalPointCostInput.value || '0', 10);
+            totalCost += parseInt(totalPointCostInput?.value || '0', 10);
         }
     });
-    document.getElementById('totalPointCost').textContent = totalCost;
+    const totalPointCostElement = document.getElementById('totalPointCost');
+    if (totalPointCostElement) {
+        totalPointCostElement.textContent = totalCost.toString();
+    }
 }
 
-function ExportPowers() {
+function ExportPowers(): void {
     const dataStr = JSON.stringify(powers, null, 2);
     const blob = new Blob([dataStr], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -308,8 +325,9 @@ function ExportPowers() {
     document.body.removeChild(a);
 }
 
-function ImportPowers(event) {
-    const file = event.target.files[0];
+function ImportPowers(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
     if (!file) {
         return;
     }
@@ -317,9 +335,9 @@ function ImportPowers(event) {
     const reader = new FileReader();
     reader.onload = function (e) {
         try {
-            const importedPowers = JSON.parse(e.target.result);
+            const importedPowers: Power[] = JSON.parse(e.target?.result as string);
             // Validate the imported data (basic validation)
-            const requiredFields = ['powerId', 'name', 'description', 'extras', 'flaws', 'totalCost', 'included'];
+            const requiredFields: (keyof Power)[] = ['powerId', 'name', 'description', 'extras', 'flaws', 'totalCost', 'included'];
             const isValid = Array.isArray(importedPowers) && importedPowers.every(item =>
                 requiredFields.every(field => field in item)
             );

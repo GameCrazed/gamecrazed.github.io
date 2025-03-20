@@ -13,7 +13,7 @@ module.exports = {
     measurementsTable: './src/measurements-table.js',
     advantages: './src/advantages.js',
     conditions: './src/conditions.ts',
-    variablePowersManager: './src/variable-powers-manager.js',
+    variablePowersManager: './src/variable-powers-manager.ts',
     loadNavbar: './src/load-navbar.js',
   },
   output: {
