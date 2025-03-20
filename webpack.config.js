@@ -9,7 +9,7 @@ module.exports = {
     cookieHandler: './src/cookie-handler.ts',
     guidHandler: './src/guid-handler.ts',
     index: './src/index.ts',
-    throwingDistanceCalculator: './src/throwing-distance-calculator.js',
+    throwingDistanceCalculator: './src/throwing-distance-calculator.ts',
     measurementsTable: './src/measurements-table.ts',
     advantages: './src/advantages.ts',
     conditions: './src/conditions.ts',
