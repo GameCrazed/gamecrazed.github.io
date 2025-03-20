@@ -11,7 +11,7 @@ module.exports = {
     index: './src/index.js',
     throwingDistanceCalculator: './src/throwing-distance-calculator.js',
     measurementsTable: './src/measurements-table.js',
-    advantages: './src/advantages.js',
+    advantages: './src/advantages.ts',
     conditions: './src/conditions.ts',
     variablePowersManager: './src/variable-powers-manager.ts',
     loadNavbar: './src/load-navbar.js',
