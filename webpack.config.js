@@ -10,7 +10,7 @@ module.exports = {
     guidHandler: './src/guid-handler.ts',
     index: './src/index.ts',
     throwingDistanceCalculator: './src/throwing-distance-calculator.js',
-    measurementsTable: './src/measurements-table.js',
+    measurementsTable: './src/measurements-table.ts',
     advantages: './src/advantages.ts',
     conditions: './src/conditions.ts',
     variablePowersManager: './src/variable-powers-manager.ts',

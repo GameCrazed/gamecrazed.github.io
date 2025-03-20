@@ -1,19 +1,32 @@
-import { LoadMeasurements } from './database-handler.ts';
+import { LoadMeasurements } from './database-handler';
+
+interface Measurement {
+    Rank: string;
+    Mass: string;
+    Time: string;
+    Distance: string;
+    Volume: string;
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     PopulateMeasurementsTable();
 
-    document.getElementById('toggleButton').addEventListener('click', PopulateMeasurementsTable);
+    const toggleButton = document.getElementById('toggleButton') as HTMLButtonElement;
+    if (toggleButton) {
+        toggleButton.addEventListener('click', PopulateMeasurementsTable);
+    }
 });
 
-async function PopulateMeasurementsTable() {
-    const tableBody = document.getElementById('measurementsTableBody');
-    const toggleButton = document.getElementById('toggleButton');
+async function PopulateMeasurementsTable(): Promise<void> {
+    const tableBody = document.getElementById('measurementsTableBody') as HTMLTableSectionElement;
+    const toggleButton = document.getElementById('toggleButton') as HTMLButtonElement;
+
+    if (!tableBody || !toggleButton) return;
 
     // Clear current table rows
     tableBody.innerHTML = '';
 
-    const measurementsTable = await LoadMeasurements(toggleButton.value);
+    const measurementsTable: Measurement[] = await LoadMeasurements(toggleButton.value) as Measurement[];
 
     measurementsTable.forEach((item) => {
         const row = document.createElement('tr');
