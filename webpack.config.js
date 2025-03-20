@@ -7,11 +7,12 @@ module.exports = {
   entry: {
     databaseHandler: './src/database-handler.ts',
     cookieHandler: './src/cookie-handler.ts',
+    guidHandler: './src/guid-handler.ts',
     index: './src/index.js',
     throwingDistanceCalculator: './src/throwing-distance-calculator.js',
     measurementsTable: './src/measurements-table.js',
     advantages: './src/advantages.js',
-    conditions: './src/conditions.js',
+    conditions: './src/conditions.ts',
     variablePowersManager: './src/variable-powers-manager.js',
     loadNavbar: './src/load-navbar.js',
   },

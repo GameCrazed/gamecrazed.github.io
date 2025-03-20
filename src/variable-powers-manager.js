@@ -1,5 +1,5 @@
-import { SavePowersToCookies, LoadPowersFromCookies } from './cookie-handler.ts';
-import { GenerateGuid } from './guid-handler.js';
+import { SavePowersToCookies, LoadPowersFromCookies } from './cookie-handler';
+import { GenerateGuid } from './guid-handler';
 
 const powers = [];
 

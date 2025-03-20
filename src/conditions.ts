@@ -1,52 +1,71 @@
-import { GetBasicConditions, GetCombinedConditions, GetCombinedConditionByConditionName, GetBasicConditionByConditionName } from "./database-handler.ts";
-import { GenerateGuid } from "./guid-handler.js";
-import { SaveCreaturesToCookies, LoadCreaturesFromCookies } from "./cookie-handler.ts";
+import { GetBasicConditions, GetCombinedConditions, GetCombinedConditionByConditionName, GetBasicConditionByConditionName } from "./database-handler";
+import { GenerateGuid } from "./guid-handler";
+import { SaveCreaturesToCookies, LoadCreaturesFromCookies } from "./cookie-handler";
+
+interface Condition {
+    ConditionName: string;
+    Description: string;
+    DescriptionSummary?: string;
+    BasicConditions?: string;
+}
+
+interface Creature {
+    id: string;
+    name: string;
+    injuries: string;
+    activeConditions: string[];
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     PopulateConditionsList();
 
-    document.getElementById('addCreatureBtn').addEventListener('click', AddConditionCreature);
+    const addCreatureBtn = document.getElementById('addCreatureBtn');
+    if (addCreatureBtn) {
+        addCreatureBtn.addEventListener('click', AddConditionCreature);
+    }
 });
 
-async function PopulateConditionsList() {
-    const conditionsLists = {
-        'baseConditionsUList': await GetBasicConditions(),
-        'combinedConditionsUList': await GetCombinedConditions()
+async function PopulateConditionsList(): Promise<void> {
+    const conditionsLists: { [key: string]: Condition[] } = {
+        'baseConditionsUList': await GetBasicConditions() as Condition[],
+        'combinedConditionsUList': await GetCombinedConditions() as Condition[]
     };
 
     for (const [elementId, conditions] of Object.entries(conditionsLists)) {
         const conditionsListElement = document.getElementById(elementId);
-        conditionsListElement.innerHTML = '';
-        conditions.forEach(condition => {
-            const listItem = CreateListItem(condition);
-            conditionsListElement.appendChild(listItem);
-        });
+        if (conditionsListElement) {
+            conditionsListElement.innerHTML = '';
+            conditions.forEach(condition => {
+                const listItem = CreateListItem(condition);
+                conditionsListElement.appendChild(listItem);
+            });
+        }
     }
 
     CheckCookiesForCreatures();
 }
 
-function CheckCookiesForCreatures() {
-    const creatures = LoadCreaturesFromCookies();
+function CheckCookiesForCreatures(): void {
+    const creatures: Creature[] = LoadCreaturesFromCookies() || [];
 
     if (creatures) {
         creatures.forEach(async creature => {
             const creatureDiv = await CreateCreatureDiv(creature.id);
 
             // Set the saved name and injuries
-            const nameInput = creatureDiv.querySelector(".creature-name-input");
-            nameInput.value = creature.name;
+            const nameInput = creatureDiv.querySelector<HTMLInputElement>(".creature-name-input");
+            if (nameInput) nameInput.value = creature.name;
 
-            const injuryInput = creatureDiv.querySelector(".creature-injury-input");
-            injuryInput.value = creature.injuries;
+            const injuryInput = creatureDiv.querySelector<HTMLInputElement>(".creature-injury-input");
+            if (injuryInput) injuryInput.value = creature.injuries;
 
             // Append the creature to the list first
             const creaturesList = document.getElementById("creaturesList");
-            creaturesList.appendChild(creatureDiv);
+            if (creaturesList) creaturesList.appendChild(creatureDiv);
 
             // Simulate button clicks to activate conditions
             for (const conditionName of creature.activeConditions) {
-                const button = creatureDiv.querySelector(`button[data-condition="${conditionName}"]`);
+                const button = creatureDiv.querySelector<HTMLButtonElement>(`button[data-condition="${conditionName}"]`);
                 if (button) {
                     button.classList.add("red");
                     const isCombinedCondition = await IsCombinedCondition(conditionName);
@@ -57,12 +76,12 @@ function CheckCookiesForCreatures() {
     }
 }
 
-async function IsCombinedCondition(conditionName) {
+async function IsCombinedCondition(conditionName: string): Promise<boolean> {
     const combinedConditions = await GetCombinedConditions();
-    return combinedConditions.some(condition => condition.ConditionName === conditionName);
+    return (combinedConditions as Condition[]).some((condition: Condition) => condition.ConditionName === conditionName);
 }
 
-function CreateListItem(condition) {
+function CreateListItem(condition: Condition): HTMLLIElement {
     const listItem = document.createElement('li');
 
     const conditionContainer = document.createElement('div');
@@ -86,18 +105,18 @@ function CreateListItem(condition) {
     return listItem;
 }
 
-async function AddConditionCreature() {
+async function AddConditionCreature(): Promise<void> {
     const creaturesList = document.getElementById("creaturesList");
     const creatureId = GenerateGuid();
     const creatureDiv = await CreateCreatureDiv(creatureId);
 
-    creaturesList.appendChild(creatureDiv);
+    if (creaturesList) creaturesList.appendChild(creatureDiv);
 
     // Save to local storage
     SaveCreaturesToCookies();
 }
 
-export async function CreateCreatureDiv(creatureId) {
+export async function CreateCreatureDiv(creatureId: string): Promise<HTMLDivElement> {
     const creatureDiv = document.createElement("div");
     creatureDiv.id = creatureId;
     creatureDiv.classList.add("creature");
@@ -120,7 +139,7 @@ export async function CreateCreatureDiv(creatureId) {
     return creatureDiv;
 }
 
-function CreateCreatureHeader(creatureId, creatureDiv) {
+function CreateCreatureHeader(creatureId: string, creatureDiv: HTMLDivElement): HTMLDivElement {
     const creatureHeader = document.createElement("div");
     creatureHeader.classList.add("creature-header");
 
@@ -161,13 +180,13 @@ function CreateCreatureHeader(creatureId, creatureDiv) {
     return creatureHeader;
 }
 
-async function CreateConditionsButtonsContainer(creatureId) {
+async function CreateConditionsButtonsContainer(creatureId: string): Promise<HTMLDivElement> {
     const buttonsContainer = document.createElement("div");
     buttonsContainer.classList.add("conditions-buttons-container");
 
     try {
-        const basicConditions = await GetBasicConditions();
-        const combinedConditions = await GetCombinedConditions();
+        const basicConditions = await GetBasicConditions() as Condition[];
+        const combinedConditions = await GetCombinedConditions() as Condition[];
 
         AppendConditionsButtons(buttonsContainer, "Basic Conditions", basicConditions, creatureId, false);
         AppendConditionsButtons(buttonsContainer, "Combined Conditions", combinedConditions, creatureId, true);
@@ -178,7 +197,7 @@ async function CreateConditionsButtonsContainer(creatureId) {
     return buttonsContainer;
 }
 
-function AppendConditionsButtons(container, titleText, conditions, creatureId, isCombined) {
+function AppendConditionsButtons(container: HTMLDivElement, titleText: string, conditions: Condition[], creatureId: string, isCombined: boolean): void {
     const title = document.createElement("h4");
     title.innerText = titleText;
     container.appendChild(title);
@@ -200,34 +219,38 @@ function AppendConditionsButtons(container, titleText, conditions, creatureId, i
     });
 }
 
-async function AddEffectToCreature(creatureId, effectName, isCombinedCondition = false) {
+async function AddEffectToCreature(creatureId: string, effectName: string, isCombinedCondition = false): Promise<void> {
     const effectsList = document.getElementById(`effects-${creatureId}`);
     const effectItem = document.createElement("li");
 
     if (isCombinedCondition) {
-        const combinedCondition = await GetCombinedConditionByConditionName(effectName);
-        effectItem.dataset.basicConditions = JSON.stringify(combinedCondition.BasicConditions.split(','));
-        AppendCombinedCondition(effectItem, combinedCondition);
+        const combinedCondition = await GetCombinedConditionByConditionName(effectName) as Condition;
+        if (combinedCondition) {
+            effectItem.dataset.basicConditions = JSON.stringify((combinedCondition as Condition).BasicConditions?.split(','));
+            AppendCombinedCondition(effectItem, combinedCondition);
+        }
     } else {
-        const basicCondition = await GetBasicConditionByConditionName(effectName);
-        AppendBasicCondition(effectItem, basicCondition);
+        const basicCondition = await GetBasicConditionByConditionName(effectName) as Condition | null;
+        if (basicCondition) {
+            AppendBasicCondition(effectItem, basicCondition);
+        }
     }
 
-    effectsList.appendChild(effectItem);
+    if (effectsList) effectsList.appendChild(effectItem);
     PreventDuplicateBasicCondition(effectName);
 
     // Save to local storage
     SaveCreaturesToCookies();
 }
 
-function AppendCombinedCondition(effectItem, combinedCondition) {
+function AppendCombinedCondition(effectItem: HTMLLIElement, combinedCondition: Condition): void {
     if (combinedCondition) {
         const description = `<b>${combinedCondition.ConditionName}: </b>${combinedCondition.DescriptionSummary}`;
         effectItem.innerHTML = description;
 
         const subList = document.createElement("ul");
-        combinedCondition.BasicConditions.split(',').forEach(async basicConditionName => {
-            const basicCondition = await GetBasicConditionByConditionName(basicConditionName);
+        combinedCondition.BasicConditions?.split(',').forEach(async basicConditionName => {
+            const basicCondition = await GetBasicConditionByConditionName(basicConditionName) as Condition | null;
             if (basicCondition) {
                 const subListItem = document.createElement("li");
                 subListItem.innerHTML = `<b>${basicCondition.ConditionName}: </b>${basicCondition.DescriptionSummary}`;
@@ -238,26 +261,26 @@ function AppendCombinedCondition(effectItem, combinedCondition) {
     }
 }
 
-function AppendBasicCondition(effectItem, basicCondition) {
+function AppendBasicCondition(effectItem: HTMLLIElement, basicCondition: Condition): void {
     if (basicCondition) {
         effectItem.innerHTML = `<b>${basicCondition.ConditionName}: </b>${basicCondition.DescriptionSummary}`;
     }
 }
 
-function PreventDuplicateBasicCondition(effectName) {
-    const basicConditionBtn = document.querySelector(`button[data-condition="${effectName}"]`);
+function PreventDuplicateBasicCondition(effectName: string): void {
+    const basicConditionBtn = document.querySelector<HTMLButtonElement>(`button[data-condition="${effectName}"]`);
     if (basicConditionBtn && basicConditionBtn.classList.contains("grey")) {
         alert("This basic condition is currently part of an active combined condition and cannot be added individually.");
         return;
     }
 }
 
-async function RemoveEffectFromCreature(creatureId, effectName) {
+async function RemoveEffectFromCreature(creatureId: string, effectName: string): Promise<void> {
     const effectsList = document.getElementById(`effects-${creatureId}`);
-    const effectItemToRemove = Array.from(effectsList.getElementsByTagName("li")).find(item =>
+    const effectItemToRemove = Array.from(effectsList?.getElementsByTagName("li") || []).find(item =>
         item.innerHTML.includes(`<b>${effectName}: </b>`));
 
-    if (effectItemToRemove) {
+    if (effectItemToRemove && effectsList) {
         effectsList.removeChild(effectItemToRemove);
 
         // Save to local storage
