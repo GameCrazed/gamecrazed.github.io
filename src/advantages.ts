@@ -1,17 +1,29 @@
-import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "./database-handler.ts";
+import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "./database-handler";
+
+interface Advantage {
+    AdvantageName: string;
+    Description: string;
+    Selected: boolean;
+}
+
+interface Tooltip {
+    TooltipId: string;
+    TooltipTag: string;
+    TooltipDescription: string;
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     PopulateAdvantagesList();
-    document.getElementById('filterAdvantagesCheckbox').addEventListener('change', ReFilterAdvantages);
-    document.getElementById('searchAdvantages').addEventListener('input', ReFilterAdvantages);
+    document.getElementById('filterAdvantagesCheckbox')?.addEventListener('change', ReFilterAdvantages);
+    document.getElementById('searchAdvantages')?.addEventListener('input', ReFilterAdvantages);
 });
 
-let advantages = [];
+let advantages: Advantage[] = [];
 
-async function PopulateAdvantagesList() {
-    const advantagesListElement = document.getElementById('advantagesList');
+async function PopulateAdvantagesList(): Promise<void> {
+    const advantagesListElement = document.getElementById('advantagesList') as HTMLElement;
     advantagesListElement.innerHTML = '';
-    advantages = await GetAdvantages();
+    advantages = await GetAdvantages() as Advantage[];
 
     advantages.forEach(advantage => {
         const listItem = document.createElement('li');
@@ -37,7 +49,7 @@ async function PopulateAdvantagesList() {
 
         // Add event listener to load description on expand
         listItem.addEventListener('click', async (event) => {
-            if (!event.target.matches('input[type="checkbox"]')) {
+            if (!(event.target as HTMLElement).matches('input[type="checkbox"]')) {
                 listItem.classList.toggle('expanded');
                 if (listItem.classList.contains('expanded') && !listItem.querySelector('.description')) {
                     let descriptionHtml = advantage.Description;
@@ -48,7 +60,7 @@ async function PopulateAdvantagesList() {
                     while ((match = regex.exec(descriptionHtml)) !== null) {
                         const word = match[1];
                         const tooltip = await GetToolTipByTag(word);
-                        descriptionHtml = descriptionHtml.replace(`{${word}}`, `<span class="tooltip" data-tooltip-index="${tooltip.TooltipId}">${tooltip.TooltipTag}</span>`);
+                        descriptionHtml = descriptionHtml.replace(`{${word}}`, `<span class="tooltip" data-tooltip-index="${(tooltip as Tooltip).TooltipId}">${(tooltip as Tooltip).TooltipTag}</span>`);
                     }
 
                     const descriptionElement = document.createElement('div');
@@ -61,9 +73,9 @@ async function PopulateAdvantagesList() {
                     tooltips.forEach((tooltip) => {
                         tooltip.addEventListener('click', async (event) => {
                             event.stopPropagation(); // Prevent toggling the 'expanded' class on li
-                            const tooltipIndex = event.target.getAttribute('data-tooltip-index');
-                            const tooltip = await GetToolTipById(tooltipIndex);
-                            ShowTooltipPopup(tooltip, event);
+                            const tooltipIndex = (event.target as HTMLElement).getAttribute('data-tooltip-index') as string;
+                            const tooltipData = await GetToolTipById(Number(tooltipIndex));
+                            ShowTooltipPopup(tooltipData as Tooltip, event as MouseEvent);
                         });
                     });
                 }
@@ -76,13 +88,13 @@ async function PopulateAdvantagesList() {
     ReFilterAdvantages();
 }
 
-function ReFilterAdvantages() {
-    const showSelectedOnly = document.getElementById('filterAdvantagesCheckbox').checked;
-    const searchInput = document.getElementById('searchAdvantages').value.trim().toLowerCase();
-    const listItems = document.querySelectorAll('#advantagesList li');
+function ReFilterAdvantages(): void {
+    const showSelectedOnly = (document.getElementById('filterAdvantagesCheckbox') as HTMLInputElement).checked;
+    const searchInput = (document.getElementById('searchAdvantages') as HTMLInputElement).value.trim().toLowerCase();
+    const listItems = document.querySelectorAll<HTMLLIElement>('#advantagesList li');
 
     listItems.forEach(item => {
-        const text = item.querySelector('strong').textContent.trim().toLowerCase();
+        const text = item.querySelector('strong')?.textContent?.trim().toLowerCase() || '';
         const advantage = advantages.find(adv => adv.AdvantageName.toLowerCase() === text);
         const isSelected = advantage ? advantage.Selected : false;
 
@@ -97,10 +109,10 @@ function ReFilterAdvantages() {
     });
 }
 
-function ShowTooltipPopup(tooltipData, event) {
-    const tooltipPopup = document.getElementById('tooltipPopup');
-    const tooltipTitle = document.getElementById('tooltipTitle');
-    const tooltipContent = document.getElementById('tooltipContent');
+function ShowTooltipPopup(tooltipData: Tooltip, event: MouseEvent): void {
+    const tooltipPopup = document.getElementById('tooltipPopup') as HTMLElement;
+    const tooltipTitle = document.getElementById('tooltipTitle') as HTMLElement;
+    const tooltipContent = document.getElementById('tooltipContent') as HTMLElement;
 
     tooltipTitle.innerHTML = tooltipData.TooltipTag;
     tooltipContent.innerHTML = tooltipData.TooltipDescription;
@@ -128,20 +140,20 @@ function ShowTooltipPopup(tooltipData, event) {
 //Including resetting its position when the click-out function is called.
 
 let isDragging = false;
-let offsetX, offsetY;
+let offsetX: number, offsetY: number;
 
 // Function to initialize dragging
-function initDrag(e) {
-    const tooltipPopup = document.getElementById('tooltipPopup');
+function initDrag(e: MouseEvent): void {
+    const tooltipPopup = document.getElementById('tooltipPopup') as HTMLElement;
     isDragging = true;
     offsetX = e.clientX - tooltipPopup.offsetLeft;
     offsetY = e.clientY - tooltipPopup.offsetTop;
 }
 
 // Function to handle mouse movement during dragging
-function doDrag(e) {
+function doDrag(e: MouseEvent): void {
     if (isDragging) {
-        const tooltipPopup = document.getElementById('tooltipPopup');
+        const tooltipPopup = document.getElementById('tooltipPopup') as HTMLElement;
 
         let newX = e.clientX - offsetX;
         let newY = e.clientY - offsetY;
@@ -161,18 +173,18 @@ function doDrag(e) {
 }
 
 // Function to stop dragging
-function stopDrag() {
+function stopDrag(): void {
     isDragging = false;
 }
 
 // Event listeners for dragging
-const tooltipPopup = document.getElementById('tooltipPopup');
+const tooltipPopup = document.getElementById('tooltipPopup') as HTMLElement;
 tooltipPopup.addEventListener('mousedown', initDrag);
 document.addEventListener('mousemove', doDrag);
 document.addEventListener('mouseup', stopDrag);
 
 document.addEventListener('click', function (e) {
-    if (!tooltipPopup.contains(e.target)) {
+    if (!tooltipPopup.contains(e.target as Node)) {
         tooltipPopup.style.display = 'none';
     }
 });

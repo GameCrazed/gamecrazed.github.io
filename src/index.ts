@@ -1,12 +1,17 @@
-//#region /*----------Core Functions----------*/
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('degreeCalcBtn').addEventListener('click', CalculateDegrees);
+    const degreeCalcBtn = document.getElementById('degreeCalcBtn') as HTMLButtonElement;
+    if (degreeCalcBtn) {
+        degreeCalcBtn.addEventListener('click', CalculateDegrees);
+    }
 });
 
-function CalculateDegrees() {
-    const dc = parseInt(document.getElementById('dc').value);
-    const roll = parseInt(document.getElementById('roll').value);
-    const resultDiv = document.getElementById('result');
+function CalculateDegrees(): void {
+    const dcInput = document.getElementById('dc') as HTMLInputElement;
+    const rollInput = document.getElementById('roll') as HTMLInputElement;
+    const resultDiv = document.getElementById('result') as HTMLDivElement;
+
+    const dc = parseInt(dcInput.value);
+    const roll = parseInt(rollInput.value);
 
     if (isNaN(dc) || isNaN(roll)) {
         resultDiv.textContent = 'Please enter valid numbers for both DC and Roll.';
