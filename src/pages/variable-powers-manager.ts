@@ -1,6 +1,6 @@
-import '../CSS/variable-power-manager.css';
-import { SavePowersToCookies, LoadPowersFromCookies } from './cookie-handler';
-import { GenerateGuid } from './guid-handler';
+import './variable-power-manager.css';
+import { SavePowersToCookies, LoadPowersFromCookies } from '../services/cookie-handler';
+import { GenerateGuid } from '../services/guid-handler';
 
 interface Power {
     powerId: string;

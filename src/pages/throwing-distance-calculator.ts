@@ -1,4 +1,4 @@
-import { GetMeasurementByMassLbs, GetMeasurementByRank } from './database-handler';
+import { GetMeasurementByMassLbs, GetMeasurementByRank } from '../services/database-handler';
 
 interface Measurement {
     Rank: number;

@@ -13,7 +13,7 @@ async function InitializeWorker() {
         from: "inline",
         config: {
           serverMode: "full",
-          url: "/MandMDataStore.sqlite3",
+          url: "/data-store.sqlite3",
           requestChunkSize: 4096,
         },
       },

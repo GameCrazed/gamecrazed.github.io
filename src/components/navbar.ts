@@ -1,4 +1,4 @@
-import '../CSS/main.css';
+import './main.css';
 
 document.addEventListener('DOMContentLoaded', function() {
     fetch('navbar.html')

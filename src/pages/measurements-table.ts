@@ -1,5 +1,5 @@
-import '../CSS/measurements-table.css';
-import { LoadMeasurements } from './database-handler';
+import './measurements-table.css';
+import { LoadMeasurements } from '../services/database-handler';
 
 interface Measurement {
     Rank: string;

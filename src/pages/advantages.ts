@@ -1,5 +1,5 @@
-import '../CSS/advantages.css';
-import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "./database-handler";
+import './advantages.css';
+import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "../services/database-handler";
 
 interface Advantage {
     AdvantageName: string;
