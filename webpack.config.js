@@ -108,7 +108,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/pages/variable-powers-manager.html',
       filename: 'variable-powers-manager.html',
-      chunks: ['variablePowersManager', 'navbar', 'databaseHandler'],
+      chunks: ['variablePowersManager', 'navbar'],
       inject: 'body',
       favicon: './src/assets/favicon.ico',
       templateParameters: {
@@ -127,4 +127,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin()
   ],
+performance: {
+    maxAssetSize: 1500000, // Increase asset size limit to 1.5 MiB
+  }
 };
