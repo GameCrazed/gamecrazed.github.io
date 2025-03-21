@@ -50,42 +50,42 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './html/index.html',
       filename: 'index.html',
       chunks: ['index', 'databaseHandler', 'loadNavbar'],
       inject: 'body',
       favicon: './Assets/favicon.ico',
     }),
     new HtmlWebpackPlugin({
-      template: './throwing-distance-calculator.html',
+      template: './html/throwing-distance-calculator.html',
       filename: 'throwing-distance-calculator.html',
       chunks: ['throwingDistanceCalculator', 'loadNavbar'],
       inject: 'body',
       favicon: './Assets/favicon.ico',
     }),
     new HtmlWebpackPlugin({
-      template: './measurements-table.html',
+      template: './html/measurements-table.html',
       filename: 'measurements-table.html',
       chunks: ['measurementsTable', 'loadNavbar'],
       inject: 'body',
       favicon: './Assets/favicon.ico',
     }),
     new HtmlWebpackPlugin({
-      template: './advantages.html',
+      template: './html/advantages.html',
       filename: 'advantages.html',
       chunks: ['advantages', 'loadNavbar'],
       inject: 'body',
       favicon: './Assets/favicon.ico',
     }),
     new HtmlWebpackPlugin({
-      template: './conditions.html',
+      template: './html/conditions.html',
       filename: 'conditions.html',
       chunks: ['conditions', 'loadNavbar'],
       inject: 'body',
       favicon: './Assets/favicon.ico',
     }),
     new HtmlWebpackPlugin({
-      template: './variable-powers-manager.html',
+      template: './html/variable-powers-manager.html',
       filename: 'variable-powers-manager.html',
       chunks: ['variablePowersManager', 'loadNavbar', 'databaseHandler'],
       inject: 'body',
@@ -96,8 +96,8 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'MandMDataStore.sqlite3'},
-        { from: 'navbar.html'}
+        { from: 'MandMDataStore.sqlite3' },
+        { from: './html/navbar.html' },
       ],
     }),
   ],
