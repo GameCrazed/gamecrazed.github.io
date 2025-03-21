@@ -1,0 +1,138 @@
+#conditionsList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.conditionsList li {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: opacity 0.3s ease-out;
+    overflow: hidden;
+    max-height: 50px;
+}
+
+.conditionsList li.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.conditionsList li:hover {
+    background-color: #e6f4f8;
+}
+
+.conditionsList li.expanded {
+    max-height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.conditionsList li strong {
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #007bff;
+    width: calc(100% - 30px);
+}
+
+.conditionsList li .condition-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conditionsList li .description {
+    display: none;
+}
+
+.conditionsList li.expanded .description {
+    display: block;
+    overflow-y: auto;
+}
+
+.conditionsList li.expanded .description::-webkit-scrollbar {
+    display: none;
+}
+
+.conditionsList li.expanded .description {
+    scrollbar-width: none;
+}
+
+.condition-container input[type="checkbox"] {
+    margin-left: auto;
+    margin-right: 10%;
+    width: auto;
+}
+
+.conditions-buttons-container button {
+    width: calc(100% / 5); /* Sets the width to 20% of its container width */
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    padding: 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+}
+
+.conditions-buttons-container button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.conditions-buttons-container button.red {
+    background-color: #fc2d2d; /* Red */
+}
+
+.conditions-buttons-container button.red:hover {
+    background-color: #e60000; /* Darker red */
+}
+
+.conditions-buttons-container h4 {
+    margin: auto;
+}
+
+.condition-half {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+    overflow-y: auto;
+    height: calc(100vh - 300px);
+}
+
+.creature-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.creature-header h3 {
+    margin-right: 5px;
+}
+
+.creature-header h5 {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.creature-header button {
+    padding: 10px;
+    margin-left: -40px;
+}
+
+.creature-name-input {
+    flex: 1;
+}
+
+.creature-injury-input {
+    width: 50px;
+}
+
+.split {
+    display: flex;
+    flex-wrap: wrap;
+}

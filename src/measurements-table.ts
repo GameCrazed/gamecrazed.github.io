@@ -1,3 +1,4 @@
+import '../CSS/measurements-table.css';
 import { LoadMeasurements } from './database-handler';
 
 interface Measurement {

@@ -1,3 +1,4 @@
+import '../CSS/variable-power-manager.css';
 import { SavePowersToCookies, LoadPowersFromCookies } from './cookie-handler';
 import { GenerateGuid } from './guid-handler';
 

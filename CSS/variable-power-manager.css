@@ -1,0 +1,105 @@
+.powerBox {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s, max-height 0.3s;
+    overflow: hidden;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.powerBox.power-active {
+    background-color: #4287f5;
+}
+
+.powerBox-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.powerHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.powerCost {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.costItem {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.costItem:last-child {
+    margin-right: 0;
+}
+
+#powersTableContainer {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+}
+
+#powers-table {
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid transparent;
+}
+
+#powers-table th, #powers-table td {
+    border: 1px solid transparent;
+    padding: 8px;
+    text-align: center;
+    vertical-align: top;
+}
+
+#powers-table th {
+    background-color: #7ecee0;
+}
+
+#powers-table tr {
+    background-color: #fefefe;
+}
+
+#powers-table tr:nth-child(even) {
+    background-color: #e6f4f8;
+}
+
+#powersNumColumns {
+    max-width: 200px;
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.checkboxContainer label {
+    margin-left: 10px;
+}
+
+.checkboxContainer input {
+    margin-left: 4px;
+}
+
+textarea {
+    width: 100%;
+    margin-top: 10px;
+    resize: vertical;
+    box-sizing: border-box;
+    field-sizing: content;
+    min-height: 25px;
+}

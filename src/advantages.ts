@@ -1,3 +1,4 @@
+import '../CSS/advantages.css';
 import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "./database-handler";
 
 interface Advantage {
