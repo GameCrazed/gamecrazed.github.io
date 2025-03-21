@@ -1,5 +1,7 @@
 import { GenerateGuid } from "./guid-handler";
 
+const cookieDurationDays = 30;
+
 // Helper function to set a cookie
 function SetCookie(name: string, value: string, days: number): void {
     const date = new Date();
@@ -50,7 +52,7 @@ export function SaveCreaturesToCookies(): void {
         creatures.push(creature);
     });
 
-    SetCookie("creatureConditions", JSON.stringify(creatures), 7); // Save for 7 days
+    SetCookie("creatureConditions", JSON.stringify(creatures), cookieDurationDays);
 }
 
 export function LoadCreaturesFromCookies(): Creature[] | null {
@@ -88,7 +90,7 @@ export function LoadPowersFromCookies(): Power[] {
 }
 
 export function SavePowersToCookies(powers: Power[]): void {
-    SetCookie('powers', JSON.stringify(powers), 7); // Save for 7 days
+    SetCookie('powers', JSON.stringify(powers), cookieDurationDays);
 }
 
 export function RemovePowerFromCookies(powerId: string): void {
@@ -101,6 +103,17 @@ export function RemovePowerFromCookies(powerId: string): void {
             powersArray.splice(index, 1);
         }
 
-        SetCookie('powers', JSON.stringify(powersArray), 7); // Save for 7 days
+        SetCookie('powers', JSON.stringify(powersArray), cookieDurationDays);
     }
 }
+
+export function SaveSelectedAdvantagesToCookies(selectedAdvantages: string[]): void {
+    SetCookie('selectedAdvantages', JSON.stringify(selectedAdvantages), cookieDurationDays);
+}
+
+export function LoadSelectedAdvantagesFromCookies(): string[] {
+    const selectedAdvantages = GetCookie('selectedAdvantages');
+    return selectedAdvantages ? JSON.parse(selectedAdvantages) : [];
+}
+
+

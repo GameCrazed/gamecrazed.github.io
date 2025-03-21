@@ -12,10 +12,11 @@
         <div class="search-container">
             <input type="text" id="searchAdvantages" placeholder="Enter advantage name..."
                 aria-label="Search Advantages">
-            <label for="filterAdvantagesCheckbox">
+            <label for="filterAdvantagesCheckbox" class="filter-checkbox" title="Check this box to filter marked advantages">
                 <input type="checkbox" id="filterAdvantagesCheckbox" aria-label="Filter Marked Advantages">
-                Filter Marked Advantages
+                Filter
             </label>
+            <button id="clearCheckedAdvantages">&#9850;</button>
         </div>
         <ul id="advantagesList" aria-live="polite"></ul>
     </div>

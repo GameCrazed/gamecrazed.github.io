@@ -17,7 +17,7 @@ interface Power {
 
 const powers: Power[] = [];
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     powers.push(...LoadPowersFromCookies());
     RenderPowers();
 
@@ -345,7 +345,7 @@ function ImportPowers(event: Event): void {
 
             if (isValid) {
                 powers.splice(0, powers.length, ...importedPowers);
-                SavePowersToCookies(powers); // Save the imported powers to cookies
+                SavePowersToCookies(powers);
                 RenderPowers();
             } else {
                 alert("Invalid JSON file structure.");

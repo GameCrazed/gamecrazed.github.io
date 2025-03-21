@@ -128,6 +128,6 @@ module.exports = {
     new CleanWebpackPlugin()
   ],
 performance: {
-    maxAssetSize: 1500000, // Increase asset size limit to 1.5 MiB
+    maxAssetSize: 1500000,
   }
 };

@@ -1,5 +1,6 @@
 import './advantages.css';
 import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "../services/database-handler";
+import { SaveSelectedAdvantagesToCookies, LoadSelectedAdvantagesFromCookies } from "../services/cookie-handler";
 
 interface Advantage {
     AdvantageName: string;
@@ -17,8 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
     PopulateAdvantagesList();
     document.getElementById('filterAdvantagesCheckbox')?.addEventListener('change', ReFilterAdvantages);
     document.getElementById('searchAdvantages')?.addEventListener('input', ReFilterAdvantages);
+    document.getElementById('clearCheckedAdvantages')?.addEventListener('click', ClearCheckedAdvantages);
 });
 
+let selectedAdvantages: string[] = LoadSelectedAdvantagesFromCookies();
 let advantages: Advantage[] = [];
 
 async function PopulateAdvantagesList(): Promise<void> {
@@ -39,9 +42,14 @@ async function PopulateAdvantagesList(): Promise<void> {
         // Create checkbox
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.checked = advantage.Selected;
+        checkbox.checked = selectedAdvantages.includes(advantage.AdvantageName);
         checkbox.addEventListener('change', () => {
-            advantage.Selected = checkbox.checked;
+            if (checkbox.checked) {
+                selectedAdvantages.push(advantage.AdvantageName);
+            } else {
+                selectedAdvantages = selectedAdvantages.filter(name => name !== advantage.AdvantageName);
+            }
+            SaveSelectedAdvantagesToCookies(selectedAdvantages);
             ReFilterAdvantages();
         });
         advantageContainer.appendChild(checkbox);
@@ -97,7 +105,7 @@ function ReFilterAdvantages(): void {
     listItems.forEach(item => {
         const text = item.querySelector('strong')?.textContent?.trim().toLowerCase() || '';
         const advantage = advantages.find(adv => adv.AdvantageName.toLowerCase() === text);
-        const isSelected = advantage ? advantage.Selected : false;
+        const isSelected = advantage ? selectedAdvantages.includes(advantage.AdvantageName) : false;
 
         const matchesSearch = text.includes(searchInput);
         const matchesFilter = !showSelectedOnly || isSelected;
@@ -194,3 +202,12 @@ document.addEventListener('click', function (e) {
 tooltipPopup.addEventListener('click', function (e) {
     e.stopPropagation();
 });
+
+function ClearCheckedAdvantages(): void {
+    const checkboxes = document.querySelectorAll<HTMLInputElement>('#advantagesList input[type="checkbox"]:checked');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.dispatchEvent(new Event('change'));
+    });
+    ReFilterAdvantages();
+}
