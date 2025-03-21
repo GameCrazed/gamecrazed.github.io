@@ -1,23 +1,11 @@
-import '../CSS/conditions.css';
-import { GetBasicConditions, GetCombinedConditions, GetCombinedConditionByConditionName, GetBasicConditionByConditionName } from "./database-handler";
-import { GenerateGuid } from "./guid-handler";
-import { SaveCreaturesToCookies, LoadCreaturesFromCookies } from "./cookie-handler";
 
-interface Condition {
-    ConditionName: string;
-    Description: string;
-    DescriptionSummary?: string;
-    BasicConditions?: string;
-}
+import './conditions.css';
+import { GetBasicConditions, GetCombinedConditions, GetCombinedConditionByConditionName, GetBasicConditionByConditionName } from "../services/database-handler";
+import { GenerateGuid } from "../services/guid-handler";
+import { SaveCreaturesToCookies, LoadCreaturesFromCookies } from "../services/cookie-handler";
+import { Creature, Condition } from '../utils/interfaces';
 
-interface Creature {
-    id: string;
-    name: string;
-    injuries: string;
-    activeConditions: string[];
-}
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     PopulateConditionsList();
 
     const addCreatureBtn = document.getElementById('addCreatureBtn');

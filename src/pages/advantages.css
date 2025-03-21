@@ -79,3 +79,12 @@
 .search-container input[type="checkbox"] {
     width: auto;
 }
+
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: right;
+}

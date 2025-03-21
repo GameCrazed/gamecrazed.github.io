@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%= htmlWebpackPlugin.options.templateParameters.head %>
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <div class="container">
+        <h2>Advantages List</h2>
+        <div class="search-container">
+            <input type="text" id="searchAdvantages" placeholder="Enter advantage name..."
+                aria-label="Search Advantages">
+            <label for="filterAdvantagesCheckbox" class="filter-checkbox" title="Check this box to filter marked advantages">
+                <input type="checkbox" id="filterAdvantagesCheckbox" aria-label="Filter Marked Advantages">
+                Filter
+            </label>
+            <button id="clearCheckedAdvantages">&#9850;</button>
+        </div>
+        <ul id="advantagesList" aria-live="polite"></ul>
+    </div>
+
+    <div id="tooltipPopup" class="tooltip-popup">
+        <div class="tooltip-content"><strong id="tooltipTitle" class="tooltipTitle"></strong>
+            <p id="tooltipContent"></p>
+        </div>
+    </div>
+</body>
+
+</html>

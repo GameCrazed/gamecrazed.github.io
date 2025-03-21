@@ -1,19 +1,7 @@
-import '../CSS/variable-power-manager.css';
-import { SavePowersToCookies, LoadPowersFromCookies } from './cookie-handler';
-import { GenerateGuid } from './guid-handler';
-
-interface Power {
-    powerId: string;
-    name: string;
-    description: string;
-    extras: string;
-    flaws: string;
-    totalCost: number;
-    included: boolean;
-    ranks: number;
-    ppPerRank: number;
-    miscPP: number;
-}
+import './variable-power-manager.css';
+import { SavePowersToCookies, LoadPowersFromCookies } from '../services/cookie-handler';
+import { GenerateGuid } from '../services/guid-handler';
+import { Power } from '../utils/interfaces';
 
 const powers: Power[] = [];
 
@@ -345,7 +333,7 @@ function ImportPowers(event: Event): void {
 
             if (isValid) {
                 powers.splice(0, powers.length, ...importedPowers);
-                SavePowersToCookies(powers); // Save the imported powers to cookies
+                SavePowersToCookies(powers);
                 RenderPowers();
             } else {
                 alert("Invalid JSON file structure.");

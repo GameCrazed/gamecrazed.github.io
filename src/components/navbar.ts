@@ -1,6 +1,6 @@
-import '../CSS/main.css';
+import './main.css';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     fetch('navbar.html')
         .then(response => response.text())
         .then(data => {
