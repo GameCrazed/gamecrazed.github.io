@@ -13,7 +13,7 @@ interface Tooltip {
     TooltipDescription: string;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     PopulateAdvantagesList();
     document.getElementById('filterAdvantagesCheckbox')?.addEventListener('change', ReFilterAdvantages);
     document.getElementById('searchAdvantages')?.addEventListener('input', ReFilterAdvantages);
@@ -125,7 +125,7 @@ function ShowTooltipPopup(tooltipData: Tooltip, event: MouseEvent): void {
 
     // Adjust if the tooltip goes off-screen
     const rect = tooltipPopup.getBoundingClientRect();
-    
+
     if (top + rect.height > window.innerHeight) {
         top = window.innerHeight - rect.height - 10;
     }

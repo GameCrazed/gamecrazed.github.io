@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const degreeCalcBtn = document.getElementById('degreeCalcBtn') as HTMLButtonElement;
     if (degreeCalcBtn) {
         degreeCalcBtn.addEventListener('click', CalculateDegrees);

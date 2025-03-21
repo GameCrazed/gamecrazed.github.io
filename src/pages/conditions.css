@@ -67,8 +67,10 @@
 }
 
 .conditions-buttons-container button {
-    width: calc(100% / 5); /* Sets the width to 20% of its container width */
-    background-color: #4CAF50; /* Green */
+    width: calc(100% / 5);
+    /* Sets the width to 20% of its container width */
+    background-color: #4CAF50;
+    /* Green */
     color: white;
     border: none;
     padding: 1px;
@@ -81,15 +83,18 @@
 }
 
 .conditions-buttons-container button:hover {
-    background-color: #45a049; /* Darker green */
+    background-color: #45a049;
+    /* Darker green */
 }
 
 .conditions-buttons-container button.red {
-    background-color: #fc2d2d; /* Red */
+    background-color: #fc2d2d;
+    /* Red */
 }
 
 .conditions-buttons-container button.red:hover {
-    background-color: #e60000; /* Darker red */
+    background-color: #e60000;
+    /* Darker red */
 }
 
 .conditions-buttons-container h4 {

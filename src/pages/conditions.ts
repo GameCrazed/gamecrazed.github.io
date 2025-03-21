@@ -18,7 +18,7 @@ interface Creature {
     activeConditions: string[];
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     PopulateConditionsList();
 
     const addCreatureBtn = document.getElementById('addCreatureBtn');

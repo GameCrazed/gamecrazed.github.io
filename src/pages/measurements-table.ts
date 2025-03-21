@@ -9,7 +9,7 @@ interface Measurement {
     Volume: string;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     PopulateMeasurementsTable();
 
     const toggleButton = document.getElementById('toggleButton') as HTMLButtonElement;

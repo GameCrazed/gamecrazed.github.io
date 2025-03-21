@@ -17,7 +17,7 @@ interface Power {
 
 const powers: Power[] = [];
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     powers.push(...LoadPowersFromCookies());
     RenderPowers();
 

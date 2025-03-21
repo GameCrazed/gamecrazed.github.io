@@ -3,6 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const fs = require('fs');
+
+function getHeadTemplate() {
+  return fs.readFileSync(path.resolve(__dirname, 'src/components/head.html'), 'utf8');
+}
 
 module.exports = {
   entry: {
@@ -15,7 +20,7 @@ module.exports = {
     advantages: './src/pages/advantages.ts',
     conditions: './src/pages/conditions.ts',
     variablePowersManager: './src/pages/variable-powers-manager.ts',
-    navbar: './src/components/navbar.ts',
+    navbar: './src/components/navbar.ts'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -56,6 +61,9 @@ module.exports = {
       chunks: ['index', 'databaseHandler', 'navbar'],
       inject: 'body',
       favicon: './src/assets/favicon.ico',
+      templateParameters: {
+        head: getHeadTemplate()
+      }
     }),
     new HtmlWebpackPlugin({
       template: './src/pages/throwing-distance-calculator.html',
@@ -63,6 +71,9 @@ module.exports = {
       chunks: ['throwingDistanceCalculator', 'navbar'],
       inject: 'body',
       favicon: './src/assets/favicon.ico',
+      templateParameters: {
+        head: getHeadTemplate()
+      }
     }),
     new HtmlWebpackPlugin({
       template: './src/pages/measurements-table.html',
@@ -70,6 +81,9 @@ module.exports = {
       chunks: ['measurementsTable', 'navbar'],
       inject: 'body',
       favicon: './src/assets/favicon.ico',
+      templateParameters: {
+        head: getHeadTemplate()
+      }
     }),
     new HtmlWebpackPlugin({
       template: './src/pages/advantages.html',
@@ -77,6 +91,9 @@ module.exports = {
       chunks: ['advantages', 'navbar'],
       inject: 'body',
       favicon: './src/assets/favicon.ico',
+      templateParameters: {
+        head: getHeadTemplate()
+      }
     }),
     new HtmlWebpackPlugin({
       template: './src/pages/conditions.html',
@@ -84,6 +101,9 @@ module.exports = {
       chunks: ['conditions', 'navbar'],
       inject: 'body',
       favicon: './src/assets/favicon.ico',
+      templateParameters: {
+        head: getHeadTemplate()
+      }
     }),
     new HtmlWebpackPlugin({
       template: './src/pages/variable-powers-manager.html',
@@ -91,6 +111,9 @@ module.exports = {
       chunks: ['variablePowersManager', 'navbar', 'databaseHandler'],
       inject: 'body',
       favicon: './src/assets/favicon.ico',
+      templateParameters: {
+        head: getHeadTemplate()
+      }
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -99,6 +122,7 @@ module.exports = {
       patterns: [
         { from: './src/utils/data-store.sqlite3' },
         { from: './src/components/navbar.html' },
+        { from: './src/components/head.html' }
       ],
     }),
     new CleanWebpackPlugin()
