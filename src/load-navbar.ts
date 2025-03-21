@@ -1,3 +1,5 @@
+import '../CSS/main.css';
+
 document.addEventListener('DOMContentLoaded', function() {
     fetch('navbar.html')
         .then(response => response.text())

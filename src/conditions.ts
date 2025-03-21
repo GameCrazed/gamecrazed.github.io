@@ -1,3 +1,4 @@
+import '../CSS/conditions.css';
 import { GetBasicConditions, GetCombinedConditions, GetCombinedConditionByConditionName, GetBasicConditionByConditionName } from "./database-handler";
 import { GenerateGuid } from "./guid-handler";
 import { SaveCreaturesToCookies, LoadCreaturesFromCookies } from "./cookie-handler";
