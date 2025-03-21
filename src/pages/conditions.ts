@@ -1,3 +1,4 @@
+
 import './conditions.css';
 import { GetBasicConditions, GetCombinedConditions, GetCombinedConditionByConditionName, GetBasicConditionByConditionName } from "../services/database-handler";
 import { GenerateGuid } from "../services/guid-handler";
