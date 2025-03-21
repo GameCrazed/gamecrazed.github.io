@@ -1,18 +1,9 @@
 import './advantages.css';
 import { GetAdvantages, GetToolTipByTag, GetToolTipById } from "../services/database-handler";
 import { SaveSelectedAdvantagesToCookies, LoadSelectedAdvantagesFromCookies } from "../services/cookie-handler";
+import { Advantage, Tooltip } from '../utils/interfaces';
 
-interface Advantage {
-    AdvantageName: string;
-    Description: string;
-    Selected: boolean;
-}
 
-interface Tooltip {
-    TooltipId: string;
-    TooltipTag: string;
-    TooltipDescription: string;
-}
 
 document.addEventListener('DOMContentLoaded', function () {
     PopulateAdvantagesList();

@@ -1,13 +1,8 @@
 import './measurements-table.css';
 import { LoadMeasurements } from '../services/database-handler';
+import { Measurement } from '../utils/interfaces';
 
-interface Measurement {
-    Rank: string;
-    Mass: string;
-    Time: string;
-    Distance: string;
-    Volume: string;
-}
+
 
 document.addEventListener('DOMContentLoaded', function () {
     PopulateMeasurementsTable();

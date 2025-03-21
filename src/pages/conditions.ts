@@ -3,20 +3,7 @@ import './conditions.css';
 import { GetBasicConditions, GetCombinedConditions, GetCombinedConditionByConditionName, GetBasicConditionByConditionName } from "../services/database-handler";
 import { GenerateGuid } from "../services/guid-handler";
 import { SaveCreaturesToCookies, LoadCreaturesFromCookies } from "../services/cookie-handler";
-
-interface Condition {
-    ConditionName: string;
-    Description: string;
-    DescriptionSummary?: string;
-    BasicConditions?: string;
-}
-
-interface Creature {
-    id: string;
-    name: string;
-    injuries: string;
-    activeConditions: string[];
-}
+import { Creature, Condition } from '../utils/interfaces';
 
 document.addEventListener('DOMContentLoaded', function () {
     PopulateConditionsList();

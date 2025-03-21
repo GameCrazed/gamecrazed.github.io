@@ -1,19 +1,7 @@
 import './variable-power-manager.css';
 import { SavePowersToCookies, LoadPowersFromCookies } from '../services/cookie-handler';
 import { GenerateGuid } from '../services/guid-handler';
-
-interface Power {
-    powerId: string;
-    name: string;
-    description: string;
-    extras: string;
-    flaws: string;
-    totalCost: number;
-    included: boolean;
-    ranks: number;
-    ppPerRank: number;
-    miscPP: number;
-}
+import { Power } from '../utils/interfaces';
 
 const powers: Power[] = [];
 

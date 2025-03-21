@@ -1,9 +1,5 @@
 import { GetMeasurementByMassLbs, GetMeasurementByRank } from '../services/database-handler';
-
-interface Measurement {
-    Rank: number;
-    Distance: string;
-}
+import { ThrowingMeasurement } from '../utils/interfaces';
 
 document.addEventListener('DOMContentLoaded', function () {
     const calcThrowDistButton = document.getElementById('calcThrowDist') as HTMLButtonElement;
@@ -28,10 +24,10 @@ async function calculateThrowingDistance(): Promise<void> {
         massLbs = parseFloat((massKg * 2.20462).toFixed(2)); // Conversion factor from kg to lbs
     }
 
-    let closestMassRank: Measurement = { Rank: 0, Distance: '' };
+    let closestMassRank: ThrowingMeasurement = { Rank: 0, Distance: '' };
     if (!isNaN(massLbs)) {
         try {
-            closestMassRank = await GetMeasurementByMassLbs(massLbs) as Measurement;
+            closestMassRank = await GetMeasurementByMassLbs(massLbs) as ThrowingMeasurement;
         } catch (error) {
             throwingResultDiv.textContent = 'Error loading measurements data: ' + error;
             return;
@@ -61,6 +57,6 @@ async function RankToDistance(rank: number): Promise<string> {
         return "Range > 4 million miles";
     }
 
-    const result = await GetMeasurementByRank(rank) as Measurement;
+    const result = await GetMeasurementByRank(rank) as ThrowingMeasurement;
     return result.Distance;
 }

@@ -1,4 +1,5 @@
 import { GenerateGuid } from "./guid-handler";
+import { Creature, Power } from "../utils/interfaces";
 
 const cookieDurationDays = 30;
 
@@ -20,13 +21,6 @@ function GetCookie(name: string): string | null {
         if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
-}
-
-interface Creature {
-    id: string;
-    name: string;
-    injuries: string;
-    activeConditions: string[];
 }
 
 export function SaveCreaturesToCookies(): void {
@@ -58,19 +52,6 @@ export function SaveCreaturesToCookies(): void {
 export function LoadCreaturesFromCookies(): Creature[] | null {
     const creatures = GetCookie("creatureConditions");
     return creatures ? JSON.parse(creatures) : null;
-}
-
-interface Power {
-    powerId: string;
-    name: string;
-    description: string;
-    extras: string;
-    flaws: string;
-    totalCost: number;
-    included: boolean;
-    ranks: number;
-    ppPerRank: number;
-    miscPP: number;
 }
 
 export function LoadPowersFromCookies(): Power[] {
@@ -115,5 +96,3 @@ export function LoadSelectedAdvantagesFromCookies(): string[] {
     const selectedAdvantages = GetCookie('selectedAdvantages');
     return selectedAdvantages ? JSON.parse(selectedAdvantages) : [];
 }
-
-
