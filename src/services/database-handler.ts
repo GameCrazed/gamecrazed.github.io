@@ -6,14 +6,26 @@ const workerUrl = new URL(
 );
 const wasmUrl = new URL("sql.js-httpvfs/dist/sql-wasm.wasm", import.meta.url);
 
+async function getDatabaseLengthBytes(url: string): Promise<number> {
+  const response = await fetch(url, { method: "HEAD" });
+  const length = response.headers.get("Content-Length");
+  return length ? parseInt(length, 10) : 0;
+}
+
 async function InitializeWorker() {
+  const dbUrl = "/data-store.sqlite3";
+  const databaseLengthBytes = await getDatabaseLengthBytes(dbUrl);
+
   return await createDbWorker(
     [
       {
         from: "inline",
         config: {
           serverMode: "chunked",
-          url: "/data-store.sqlite3",
+          urlPrefix: dbUrl,
+          serverChunkSize: 4096,
+          databaseLengthBytes,
+          suffixLength: 0,
           requestChunkSize: 4096,
         },
       },
