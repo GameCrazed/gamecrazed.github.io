@@ -12,7 +12,7 @@ async function InitializeWorker() {
       {
         from: "inline",
         config: {
-          serverMode: "full",
+          serverMode: "chunked",
           url: "/data-store.sqlite3",
           requestChunkSize: 4096,
         },
