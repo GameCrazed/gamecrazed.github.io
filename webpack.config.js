@@ -122,7 +122,8 @@ module.exports = {
       patterns: [
         { from: './src/utils/data-store.sqlite3' },
         { from: './src/components/navbar.html' },
-        { from: './src/components/head.html' }
+        { from: './src/components/head.html' },
+        { from: './src/utils/*.json', to: '[name][ext]' }
       ],
     }),
     new CleanWebpackPlugin()
