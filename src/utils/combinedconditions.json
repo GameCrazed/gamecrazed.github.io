@@ -1,0 +1,93 @@
+[
+  {
+    "CombinedConditionsId": 1,
+    "ConditionName": "Asleep",
+    "Description": "While asleep, a character is defenseless, stunned, and unaware.A hearing Perception check with three or more degrees of success wakes the character and removes all these conditions, as does any sudden movement (such as shaking the sleeping character) or any effect allowing a resistance check.",
+    "DescriptionSummary": "Defenseless, stunned, and unaware.",
+    "BasicConditions": "Defenseless,Stunned,Unaware"
+  },
+  {
+    "CombinedConditionsId": 2,
+    "ConditionName": "Blind",
+    "Description": "The character cannot see. Everything effectively has full visual concealment from him. He is hindered, visually unaware, and vulnerable, and may be impaired or disabled for activities where vision is a factor.",
+    "DescriptionSummary": "Hindered, visually unaware, vulnerable, may be impaired or disabled for visual tasks.",
+    "BasicConditions": "Hindered,Unaware,Vulnerable"
+  },
+  {
+    "CombinedConditionsId": 3,
+    "ConditionName": "Bound",
+    "Description": "A bound character is defenseless, immobile, and impaired.",
+    "DescriptionSummary": "Defenseless, immobile, and impaired.",
+    "BasicConditions": "Defenseless,Immobile,Impaired"
+  },
+  {
+    "CombinedConditionsId": 4,
+    "ConditionName": "Deaf",
+    "Description": "The character cannot hear, giving everything total auditory concealment from him. This may allow for surprise attacks on the unaware character (see <b>Surprise Attack</b> in the <b>Action & Adventure</b> chapter). Interaction with other characters is limited to sign-language and lip-reading (see <b>Interaction Skills</b> in <b>Chapter 3</b>).",
+    "DescriptionSummary": "Auditorily unaware.",
+    "BasicConditions": ""
+  },
+  {
+    "CombinedConditionsId": 5,
+    "ConditionName": "Dying",
+    "Description": "A dying character is incapacitated (defenseless, stunned, and unaware) and near death. When the character gains this condition, immediately make a Fortitude check (DC 15). If the check succeeds, nothing happens. With two degrees of success, the character stabilizes, removing this condition. If the check fails, the character remains dying. Three or more total degrees of failure mean the character dies: so three failed Fortitude checks or one or two checks adding up to three degrees. Dying characters make a Fortitude check each round until they either die or stabilize. Another character can stabilize a dying character with a successful Treatment check (DC 15) or use of a Healing effect (see the <b>Powers</b> chapter).",
+    "DescriptionSummary": "Incapacitated. May die (see <b>Dying</b> in the <i>Hero's Handbook</i>).",
+    "BasicConditions": "Incapacitated,Defenseless,Stunned,Unaware"
+  },
+  {
+    "CombinedConditionsId": 6,
+    "ConditionName": "Entranced",
+    "Description": "An entranced character is stunned, taking no actions other than paying attention to the entrancing effect. Any obvious threat automatically breaks the trance. An ally can also shake a character free of the condition with an interaction skill check (DC 10 + effect rank).",
+    "DescriptionSummary": "Stunned, but may only pay attention to entrancing effect. Breaks free if threatened or from allies interaction skill check (DC 10 + effect rank).",
+    "BasicConditions": "Stunned"
+  },
+  {
+    "CombinedConditionsId": 7,
+    "ConditionName": "Exhausted",
+    "Description": "Exhausted characters are near collapse. They are impaired and hindered. Characters recover from an exhausted condition after an hour of rest in comfortable surroundings.",
+    "DescriptionSummary": "Impaired and hindered, recover after 1 hour of rest.",
+    "BasicConditions": "Impaired,Hindered"
+  },
+  {
+    "CombinedConditionsId": 8,
+    "ConditionName": "Incapacitated",
+    "Description": "An incapacitated character is defenseless, stunned, and unaware. Incapacitated characters generally also fall prone, unless some outside force or aid keeps them standing.",
+    "DescriptionSummary": "Defenseless, stunned, unaware. Usually prone.",
+    "BasicConditions": "Defenseless,Stunned,Unaware"
+  },
+  {
+    "CombinedConditionsId": 9,
+    "ConditionName": "Paralyzed",
+    "Description": "A paralyzed character is defenseless, immobile, and physically stunned, frozen in place and unable to move, but still aware and able to take purely mental actions, involving no physical movement whatsoever.",
+    "DescriptionSummary": "Defenseless, immobile, and physically stunned; may be able to take mental actions.",
+    "BasicConditions": "Defenseless,Immobile,Stunned"
+  },
+  {
+    "CombinedConditionsId": 10,
+    "ConditionName": "Prone",
+    "Description": "A prone character is lying on the ground, receiving a –5 circumstance penalty on close attack checks. Opponents receive a + 5 circumstance bonus to close attack checks but a –5 penalty to ranged attack checks (effectively giving the prone character total cover against ranged attacks).Prone characters are hindered. Standing up from a prone position is a move action.",
+    "DescriptionSummary": "Hindered, -5 penalty on close attack checks, +5 bonus to attacker's close attack checks. Move action to stand.",
+    "BasicConditions": "Hindered"
+  },
+  {
+    "CombinedConditionsId": 11,
+    "ConditionName": "Restrained",
+    "Description": "A restrained character is hindered and vulnerable. If the restraints are anchored to an immobile object, the character is immobile rather than hindered. If restrained by another character, the restrained character is immobile but may be moved by the restraining character.",
+    "DescriptionSummary": "Hindered and vulnerable, immobile if restraints are anchored.",
+    "BasicConditions": "Hindered,Vulnerable"
+  },
+  {
+    "CombinedConditionsId": 12,
+    "ConditionName": "Staggered",
+    "Description": "A staggered character is dazed and hindered.",
+    "DescriptionSummary": "Dazed and hindered.",
+    "BasicConditions": "Dazed,Hindered"
+  },
+  {
+    "CombinedConditionsId": 13,
+    "ConditionName": "Surprised",
+    "Description": "A surprised character is stunned and vulnerable, caught off-guard and therefore unable to act, and less able to avoid attacks.",
+    "DescriptionSummary": "Stunned and vulnerable.",
+    "BasicConditions": "Stunned,Vulnerable"
+  }
+]

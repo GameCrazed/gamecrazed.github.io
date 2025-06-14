@@ -1,0 +1,742 @@
+[
+  {
+    "MeasurementId": 1,
+    "MeasurementType": "imperial",
+    "Rank": "-5",
+    "Mass": "1.5 lb.",
+    "Time": "1/8 second",
+    "Distance": "6 inches",
+    "Volume": "1/32 cft.",
+    "NumericalMass": 1.5
+  },
+  {
+    "MeasurementId": 2,
+    "MeasurementType": "imperial",
+    "Rank": "-4",
+    "Mass": "3 lbs.",
+    "Time": "1/4 second",
+    "Distance": "1 foot",
+    "Volume": "1/16 cft.",
+    "NumericalMass": 3
+  },
+  {
+    "MeasurementId": 3,
+    "MeasurementType": "imperial",
+    "Rank": "-3",
+    "Mass": "6 lbs.",
+    "Time": "1/2 second",
+    "Distance": "3 feet",
+    "Volume": "1/8 cft.",
+    "NumericalMass": 6
+  },
+  {
+    "MeasurementId": 4,
+    "MeasurementType": "imperial",
+    "Rank": "-2",
+    "Mass": "12 lbs.",
+    "Time": "1 second",
+    "Distance": "6 feet",
+    "Volume": "1/4 cft.",
+    "NumericalMass": 12
+  },
+  {
+    "MeasurementId": 5,
+    "MeasurementType": "imperial",
+    "Rank": "-1",
+    "Mass": "25 lbs.",
+    "Time": "3 seconds",
+    "Distance": "15 feet",
+    "Volume": "1/2 cft.",
+    "NumericalMass": 25
+  },
+  {
+    "MeasurementId": 6,
+    "MeasurementType": "imperial",
+    "Rank": "0",
+    "Mass": "50 lbs.",
+    "Time": "6 seconds",
+    "Distance": "30 feet",
+    "Volume": "1 cubic ft. (cft.)",
+    "NumericalMass": 50
+  },
+  {
+    "MeasurementId": 7,
+    "MeasurementType": "imperial",
+    "Rank": "1",
+    "Mass": "100 lbs.",
+    "Time": "12 seconds",
+    "Distance": "60 feet",
+    "Volume": "2 cft.",
+    "NumericalMass": 100
+  },
+  {
+    "MeasurementId": 8,
+    "MeasurementType": "imperial",
+    "Rank": "2",
+    "Mass": "200 lbs.",
+    "Time": "30 seconds",
+    "Distance": "120 feet",
+    "Volume": "4 cft.",
+    "NumericalMass": 200
+  },
+  {
+    "MeasurementId": 9,
+    "MeasurementType": "imperial",
+    "Rank": "3",
+    "Mass": "400 lbs.",
+    "Time": "1 minute",
+    "Distance": "250 feet",
+    "Volume": "8 cft.",
+    "NumericalMass": 400
+  },
+  {
+    "MeasurementId": 10,
+    "MeasurementType": "imperial",
+    "Rank": "4",
+    "Mass": "800 lbs.",
+    "Time": "2 minutes",
+    "Distance": "500 feet",
+    "Volume": "15 cft.",
+    "NumericalMass": 800
+  },
+  {
+    "MeasurementId": 11,
+    "MeasurementType": "imperial",
+    "Rank": "5",
+    "Mass": "1,600 lbs.",
+    "Time": "4 minutes",
+    "Distance": "900 feet",
+    "Volume": "30 cft.",
+    "NumericalMass": 1600
+  },
+  {
+    "MeasurementId": 12,
+    "MeasurementType": "imperial",
+    "Rank": "6",
+    "Mass": "3,200 lbs.",
+    "Time": "8 minutes",
+    "Distance": "1,800 feet",
+    "Volume": "60 cft.",
+    "NumericalMass": 3200
+  },
+  {
+    "MeasurementId": 13,
+    "MeasurementType": "imperial",
+    "Rank": "7",
+    "Mass": "3 tons",
+    "Time": "15 minutes",
+    "Distance": "1/2 mile",
+    "Volume": "125 cft.",
+    "NumericalMass": 6000
+  },
+  {
+    "MeasurementId": 14,
+    "MeasurementType": "imperial",
+    "Rank": "8",
+    "Mass": "6 tons",
+    "Time": "30 minutes",
+    "Distance": "1 mile",
+    "Volume": "250 cft.",
+    "NumericalMass": 12000
+  },
+  {
+    "MeasurementId": 15,
+    "MeasurementType": "imperial",
+    "Rank": "9",
+    "Mass": "12 tons",
+    "Time": "1 hour",
+    "Distance": "2 miles",
+    "Volume": "500 cft.",
+    "NumericalMass": 24000
+  },
+  {
+    "MeasurementId": 16,
+    "MeasurementType": "imperial",
+    "Rank": "10",
+    "Mass": "25 tons",
+    "Time": "2 hours",
+    "Distance": "4 miles",
+    "Volume": "1,000 cft.",
+    "NumericalMass": 50000
+  },
+  {
+    "MeasurementId": 17,
+    "MeasurementType": "imperial",
+    "Rank": "11",
+    "Mass": "50 tons",
+    "Time": "4 hours",
+    "Distance": "8 miles",
+    "Volume": "2,000 cft.",
+    "NumericalMass": 100000
+  },
+  {
+    "MeasurementId": 18,
+    "MeasurementType": "imperial",
+    "Rank": "12",
+    "Mass": "100 tons",
+    "Time": "8 hours",
+    "Distance": "16 miles",
+    "Volume": "4,000 cft.",
+    "NumericalMass": 200000
+  },
+  {
+    "MeasurementId": 19,
+    "MeasurementType": "imperial",
+    "Rank": "13",
+    "Mass": "200 tons",
+    "Time": "16 hours",
+    "Distance": "30 miles",
+    "Volume": "8,000 cft.",
+    "NumericalMass": 400000
+  },
+  {
+    "MeasurementId": 20,
+    "MeasurementType": "imperial",
+    "Rank": "14",
+    "Mass": "400 tons",
+    "Time": "1 day",
+    "Distance": "60 miles",
+    "Volume": "15,000 cft.",
+    "NumericalMass": 800000
+  },
+  {
+    "MeasurementId": 21,
+    "MeasurementType": "imperial",
+    "Rank": "15",
+    "Mass": "800 tons",
+    "Time": "2 days",
+    "Distance": "120 miles",
+    "Volume": "32,000 cft.",
+    "NumericalMass": 1600000
+  },
+  {
+    "MeasurementId": 22,
+    "MeasurementType": "imperial",
+    "Rank": "16",
+    "Mass": "1,600 tons",
+    "Time": "4 days",
+    "Distance": "250 miles",
+    "Volume": "65,000 cft.",
+    "NumericalMass": 3200000
+  },
+  {
+    "MeasurementId": 23,
+    "MeasurementType": "imperial",
+    "Rank": "17",
+    "Mass": "3.2 ktons",
+    "Time": "1 week",
+    "Distance": "500 miles",
+    "Volume": "125,000 cft.",
+    "NumericalMass": 6400000
+  },
+  {
+    "MeasurementId": 24,
+    "MeasurementType": "imperial",
+    "Rank": "18",
+    "Mass": "6 ktons",
+    "Time": "2 weeks",
+    "Distance": "1,000 miles",
+    "Volume": "250,000 cft.",
+    "NumericalMass": 12000000
+  },
+  {
+    "MeasurementId": 25,
+    "MeasurementType": "imperial",
+    "Rank": "19",
+    "Mass": "12 ktons",
+    "Time": "1 month",
+    "Distance": "2,000 miles",
+    "Volume": "500,000 cft.",
+    "NumericalMass": 24000000
+  },
+  {
+    "MeasurementId": 26,
+    "MeasurementType": "imperial",
+    "Rank": "20",
+    "Mass": "25 ktons",
+    "Time": "2 months",
+    "Distance": "4,000 miles",
+    "Volume": "1 million cft.",
+    "NumericalMass": 50000000
+  },
+  {
+    "MeasurementId": 27,
+    "MeasurementType": "imperial",
+    "Rank": "21",
+    "Mass": "50 ktons",
+    "Time": "4 months",
+    "Distance": "8,000 miles",
+    "Volume": "2 million cft.",
+    "NumericalMass": 100000000
+  },
+  {
+    "MeasurementId": 28,
+    "MeasurementType": "imperial",
+    "Rank": "22",
+    "Mass": "100 ktons",
+    "Time": "8 months",
+    "Distance": "16,000 miles",
+    "Volume": "4 million cft.",
+    "NumericalMass": 200000000
+  },
+  {
+    "MeasurementId": 29,
+    "MeasurementType": "imperial",
+    "Rank": "23",
+    "Mass": "200 ktons",
+    "Time": "1.5 years",
+    "Distance": "32,000 miles",
+    "Volume": "8 million cft.",
+    "NumericalMass": 400000000
+  },
+  {
+    "MeasurementId": 30,
+    "MeasurementType": "imperial",
+    "Rank": "24",
+    "Mass": "400 ktons",
+    "Time": "3 years",
+    "Distance": "64,000 miles",
+    "Volume": "15 million cft.",
+    "NumericalMass": 800000000
+  },
+  {
+    "MeasurementId": 31,
+    "MeasurementType": "imperial",
+    "Rank": "25",
+    "Mass": "800 ktons",
+    "Time": "6 years",
+    "Distance": "125,000 miles",
+    "Volume": "32 million cft.",
+    "NumericalMass": 1600000000
+  },
+  {
+    "MeasurementId": 32,
+    "MeasurementType": "imperial",
+    "Rank": "26",
+    "Mass": "1,600 ktons",
+    "Time": "12 years",
+    "Distance": "250,000 miles",
+    "Volume": "65 million cft.",
+    "NumericalMass": 3200000000
+  },
+  {
+    "MeasurementId": 33,
+    "MeasurementType": "imperial",
+    "Rank": "27",
+    "Mass": "3,200 ktons",
+    "Time": "25 years",
+    "Distance": "500,000 miles",
+    "Volume": "125 million cft.",
+    "NumericalMass": 6400000000
+  },
+  {
+    "MeasurementId": 34,
+    "MeasurementType": "imperial",
+    "Rank": "28",
+    "Mass": "6,400 ktons",
+    "Time": "50 years",
+    "Distance": "1 million miles",
+    "Volume": "250 million cft.",
+    "NumericalMass": 12800000000
+  },
+  {
+    "MeasurementId": 35,
+    "MeasurementType": "imperial",
+    "Rank": "29",
+    "Mass": "12,500 ktons",
+    "Time": "100 years",
+    "Distance": "2 million miles",
+    "Volume": "500 million cft.",
+    "NumericalMass": 25000000000
+  },
+  {
+    "MeasurementId": 36,
+    "MeasurementType": "imperial",
+    "Rank": "30",
+    "Mass": "25,000 ktons",
+    "Time": "200 years",
+    "Distance": "4 million miles",
+    "Volume": "1 billion cft.",
+    "NumericalMass": 50000000000
+  },
+  {
+    "MeasurementId": 37,
+    "MeasurementType": "imperial",
+    "Rank": "+1",
+    "Mass": "x2",
+    "Time": "x2",
+    "Distance": "x2",
+    "Volume": "x2",
+    "NumericalMass": null
+  },
+  {
+    "MeasurementId": 38,
+    "MeasurementType": "metric",
+    "Rank": "-5",
+    "Mass": "750 grams",
+    "Time": "1/8 second",
+    "Distance": "15 cm",
+    "Volume": ".0008 m³",
+    "NumericalMass": 1.5
+  },
+  {
+    "MeasurementId": 39,
+    "MeasurementType": "metric",
+    "Rank": "-4",
+    "Mass": "1.5 kg",
+    "Time": "1/4 second",
+    "Distance": "50 cm",
+    "Volume": ".0017 m³",
+    "NumericalMass": 3
+  },
+  {
+    "MeasurementId": 40,
+    "MeasurementType": "metric",
+    "Rank": "-3",
+    "Mass": "3 kg",
+    "Time": "1/2 second",
+    "Distance": "1 m",
+    "Volume": ".0035 m³",
+    "NumericalMass": 6
+  },
+  {
+    "MeasurementId": 41,
+    "MeasurementType": "metric",
+    "Rank": "-2",
+    "Mass": "6 kg",
+    "Time": "1 second",
+    "Distance": "2 m",
+    "Volume": ".007 m³",
+    "NumericalMass": 12
+  },
+  {
+    "MeasurementId": 42,
+    "MeasurementType": "metric",
+    "Rank": "-1",
+    "Mass": "12 kg",
+    "Time": "3 seconds",
+    "Distance": "4 m",
+    "Volume": ".014 m³",
+    "NumericalMass": 25
+  },
+  {
+    "MeasurementId": 43,
+    "MeasurementType": "metric",
+    "Rank": "0",
+    "Mass": "24 kg",
+    "Time": "6 seconds",
+    "Distance": "8 m",
+    "Volume": ".025 m³",
+    "NumericalMass": 50
+  },
+  {
+    "MeasurementId": 44,
+    "MeasurementType": "metric",
+    "Rank": "1",
+    "Mass": "50 kg",
+    "Time": "12 seconds",
+    "Distance": "16 m",
+    "Volume": ".05 m³",
+    "NumericalMass": 100
+  },
+  {
+    "MeasurementId": 45,
+    "MeasurementType": "metric",
+    "Rank": "2",
+    "Mass": "100 kg",
+    "Time": "30 seconds",
+    "Distance": "32 m",
+    "Volume": ".1 m³",
+    "NumericalMass": 200
+  },
+  {
+    "MeasurementId": 46,
+    "MeasurementType": "metric",
+    "Rank": "3",
+    "Mass": "200 kg",
+    "Time": "1 minute",
+    "Distance": "64 m",
+    "Volume": ".2 m³",
+    "NumericalMass": 400
+  },
+  {
+    "MeasurementId": 47,
+    "MeasurementType": "metric",
+    "Rank": "4",
+    "Mass": "400 kg",
+    "Time": "2 minutes",
+    "Distance": "125 m",
+    "Volume": ".4 m³",
+    "NumericalMass": 800
+  },
+  {
+    "MeasurementId": 48,
+    "MeasurementType": "metric",
+    "Rank": "5",
+    "Mass": "800 kg",
+    "Time": "4 minutes",
+    "Distance": "250 m",
+    "Volume": ".8 m³",
+    "NumericalMass": 1600
+  },
+  {
+    "MeasurementId": 49,
+    "MeasurementType": "metric",
+    "Rank": "6",
+    "Mass": "1600 kg",
+    "Time": "8 minutes",
+    "Distance": "500 m",
+    "Volume": "1.7 m³",
+    "NumericalMass": 3200
+  },
+  {
+    "MeasurementId": 50,
+    "MeasurementType": "metric",
+    "Rank": "7",
+    "Mass": "3.2 tons",
+    "Time": "15 minutes",
+    "Distance": "1 km",
+    "Volume": "3.5 m³",
+    "NumericalMass": 6000
+  },
+  {
+    "MeasurementId": 51,
+    "MeasurementType": "metric",
+    "Rank": "8",
+    "Mass": "6 tons",
+    "Time": "30 minutes",
+    "Distance": "2 km",
+    "Volume": "7 m³",
+    "NumericalMass": 12000
+  },
+  {
+    "MeasurementId": 52,
+    "MeasurementType": "metric",
+    "Rank": "9",
+    "Mass": "12 tons",
+    "Time": "1 hour",
+    "Distance": "4 km",
+    "Volume": "15 m³",
+    "NumericalMass": 24000
+  },
+  {
+    "MeasurementId": 53,
+    "MeasurementType": "metric",
+    "Rank": "10",
+    "Mass": "25 tons",
+    "Time": "2 hours",
+    "Distance": "8 km",
+    "Volume": "30 m³",
+    "NumericalMass": 50000
+  },
+  {
+    "MeasurementId": 54,
+    "MeasurementType": "metric",
+    "Rank": "11",
+    "Mass": "50 tons",
+    "Time": "4 hours",
+    "Distance": "16 km",
+    "Volume": "60 m³",
+    "NumericalMass": 100000
+  },
+  {
+    "MeasurementId": 55,
+    "MeasurementType": "metric",
+    "Rank": "12",
+    "Mass": "100 tons",
+    "Time": "8 hours",
+    "Distance": "32 km",
+    "Volume": "120 m³",
+    "NumericalMass": 200000
+  },
+  {
+    "MeasurementId": 56,
+    "MeasurementType": "metric",
+    "Rank": "13",
+    "Mass": "200 tons",
+    "Time": "16 hours",
+    "Distance": "64 km",
+    "Volume": "250 m³",
+    "NumericalMass": 400000
+  },
+  {
+    "MeasurementId": 57,
+    "MeasurementType": "metric",
+    "Rank": "14",
+    "Mass": "400 tons",
+    "Time": "1 day",
+    "Distance": "125 km",
+    "Volume": "500 m³",
+    "NumericalMass": 800000
+  },
+  {
+    "MeasurementId": 58,
+    "MeasurementType": "metric",
+    "Rank": "15",
+    "Mass": "800 tons",
+    "Time": "2 days",
+    "Distance": "250 km",
+    "Volume": "1,000 m³",
+    "NumericalMass": 1600000
+  },
+  {
+    "MeasurementId": 59,
+    "MeasurementType": "metric",
+    "Rank": "16",
+    "Mass": "1,600 tons",
+    "Time": "4 days",
+    "Distance": "500 km",
+    "Volume": "2,000 m³",
+    "NumericalMass": 3200000
+  },
+  {
+    "MeasurementId": 60,
+    "MeasurementType": "metric",
+    "Rank": "17",
+    "Mass": "3.2 ktons",
+    "Time": "1 week",
+    "Distance": "1,000 km",
+    "Volume": "4,000 m³",
+    "NumericalMass": 6400000
+  },
+  {
+    "MeasurementId": 61,
+    "MeasurementType": "metric",
+    "Rank": "18",
+    "Mass": "6 ktons",
+    "Time": "2 weeks",
+    "Distance": "2,000 km",
+    "Volume": "8,000 m³",
+    "NumericalMass": 12000000
+  },
+  {
+    "MeasurementId": 62,
+    "MeasurementType": "metric",
+    "Rank": "19",
+    "Mass": "12 ktons",
+    "Time": "1 month",
+    "Distance": "4,000 km",
+    "Volume": "15,000 m³",
+    "NumericalMass": 24000000
+  },
+  {
+    "MeasurementId": 63,
+    "MeasurementType": "metric",
+    "Rank": "20",
+    "Mass": "25 ktons",
+    "Time": "2 months",
+    "Distance": "8,000 km",
+    "Volume": "30,000 m³",
+    "NumericalMass": 50000000
+  },
+  {
+    "MeasurementId": 64,
+    "MeasurementType": "metric",
+    "Rank": "21",
+    "Mass": "50 ktons",
+    "Time": "4 months",
+    "Distance": "16,000 km",
+    "Volume": "60,000 m³",
+    "NumericalMass": 100000000
+  },
+  {
+    "MeasurementId": 65,
+    "MeasurementType": "metric",
+    "Rank": "22",
+    "Mass": "100 ktons",
+    "Time": "8 months",
+    "Distance": "32,000 km",
+    "Volume": "120,000 m³",
+    "NumericalMass": 200000000
+  },
+  {
+    "MeasurementId": 66,
+    "MeasurementType": "metric",
+    "Rank": "23",
+    "Mass": "200 ktons",
+    "Time": "1.5 years",
+    "Distance": "64,000 km",
+    "Volume": "250,000 m³",
+    "NumericalMass": 400000000
+  },
+  {
+    "MeasurementId": 67,
+    "MeasurementType": "metric",
+    "Rank": "24",
+    "Mass": "400 ktons",
+    "Time": "3 years",
+    "Distance": "125,000 km",
+    "Volume": "500,000 m³",
+    "NumericalMass": 800000000
+  },
+  {
+    "MeasurementId": 68,
+    "MeasurementType": "metric",
+    "Rank": "25",
+    "Mass": "800 ktons",
+    "Time": "6 years",
+    "Distance": "250,000 km",
+    "Volume": "1 million m³",
+    "NumericalMass": 1600000000
+  },
+  {
+    "MeasurementId": 69,
+    "MeasurementType": "metric",
+    "Rank": "26",
+    "Mass": "1,600 ktons",
+    "Time": "12 years",
+    "Distance": "500,000 km",
+    "Volume": "2 million m³",
+    "NumericalMass": 3200000000
+  },
+  {
+    "MeasurementId": 70,
+    "MeasurementType": "metric",
+    "Rank": "27",
+    "Mass": "3,200 ktons",
+    "Time": "25 years",
+    "Distance": "1 million km",
+    "Volume": "4 million m³",
+    "NumericalMass": 6400000000
+  },
+  {
+    "MeasurementId": 71,
+    "MeasurementType": "metric",
+    "Rank": "28",
+    "Mass": "6,400 ktons",
+    "Time": "50 years",
+    "Distance": "2 million km",
+    "Volume": "8 million m³",
+    "NumericalMass": 12800000000
+  },
+  {
+    "MeasurementId": 72,
+    "MeasurementType": "metric",
+    "Rank": "29",
+    "Mass": "12,500 ktons",
+    "Time": "100 years",
+    "Distance": "4 million km",
+    "Volume": "15 million m³",
+    "NumericalMass": 25000000000
+  },
+  {
+    "MeasurementId": 73,
+    "MeasurementType": "metric",
+    "Rank": "30",
+    "Mass": "25,000 ktons",
+    "Time": "200 years",
+    "Distance": "8 million km",
+    "Volume": "30 million m³",
+    "NumericalMass": 50000000000
+  },
+  {
+    "MeasurementId": 74,
+    "MeasurementType": "metric",
+    "Rank": "+1",
+    "Mass": "x2",
+    "Time": "x2",
+    "Distance": "x2",
+    "Volume": "x2",
+    "NumericalMass": null
+  }
+]
