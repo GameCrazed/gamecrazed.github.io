@@ -37,13 +37,22 @@ async function fetchJsonSingle<T>(
   return data.find(filter);
 }
 
+function logJsonFallback(method: string) {
+  // Only warn once per method per session
+  if (!(window as any).__jsonFallbackWarned) (window as any).__jsonFallbackWarned = {};
+  if (!(window as any).__jsonFallbackWarned[method]) {
+    console.warn(`[DB] Falling back to JSON backup in ${method}()`);
+    (window as any).__jsonFallbackWarned[method] = true;
+  }
+}
+
 export async function LoadMeasurements(imperialMetric: string) {
   try {
     const worker = await InitializeWorker();
     const query = `SELECT * FROM Measurements WHERE MeasurementType = '${imperialMetric}'`;
     return await worker.db.query(query);
-  } catch (error) {
-    // Fallback to JSON
+  } catch {
+    logJsonFallback("LoadMeasurements");
     return (await fetchJsonTable<any>("/measurements.json")).filter(
       (row: any) => row.MeasurementType === imperialMetric
     );
@@ -56,8 +65,8 @@ export async function GetMeasurementByMassLbs(massInLbs: number) {
     const query = `SELECT * FROM Measurements WHERE MeasurementType = 'imperial' AND NumericalMass >= ${massInLbs} ORDER BY NumericalMass ASC LIMIT 1`;
     const result = await worker.db.query(query);
     return result[0];
-  } catch (error) {
-    // Fallback to JSON
+  } catch {
+    logJsonFallback("GetMeasurementByMassLbs");
     const data = await fetchJsonTable<any>("/measurements.json");
     return data
       .filter(
@@ -73,8 +82,8 @@ export async function GetMeasurementByRank(rank: number) {
     const query = `SELECT * FROM Measurements WHERE MeasurementType = 'imperial' AND Rank = ${rank} LIMIT 1`;
     const result = await worker.db.query(query);
     return result[0];
-  } catch (error) {
-    // Fallback to JSON
+  } catch {
+    logJsonFallback("GetMeasurementByRank");
     return fetchJsonSingle<any>("/measurements.json", (row) => row.MeasurementType === "imperial" && row.Rank == rank);
   }
 }
@@ -85,8 +94,8 @@ export async function GetAdvantages() {
     const query = `SELECT * FROM Advantages ORDER BY AdvantageName`;
     const results = await worker.db.query(query);
     return results;
-  } catch (error) {
-    // Fallback to JSON
+  } catch {
+    logJsonFallback("GetAdvantages");
     return fetchJsonTable<any>("/advantages.json");
   }
 }
@@ -97,8 +106,8 @@ export async function GetToolTipByTag(tagName: string) {
     const query = `SELECT * FROM Tooltips WHERE ToolTipTag = '${tagName}' LIMIT 1`;
     const result = await worker.db.query(query);
     return result[0];
-  } catch (error) {
-    // Fallback to JSON
+  } catch {
+    logJsonFallback("GetToolTipByTag");
     return fetchJsonSingle<any>("/tooltips.json", (row) => row.ToolTipTag === tagName);
   }
 }
@@ -109,8 +118,8 @@ export async function GetToolTipById(tooltipId: number) {
     const query = `SELECT * FROM Tooltips WHERE TooltipId = '${tooltipId}' LIMIT 1`;
     const result = await worker.db.query(query);
     return result[0];
-  } catch (error) {
-    // Fallback to JSON
+  } catch {
+    logJsonFallback("GetToolTipById");
     return fetchJsonSingle<any>("/tooltips.json", (row) => row.TooltipId == tooltipId);
   }
 }
@@ -121,9 +130,9 @@ export async function GetBasicConditions() {
     const query = `SELECT * FROM BasicConditions ORDER BY ConditionName`;
     const results = await worker.db.query(query);
     return results;
-  } catch (error) {
-    // Fallback to JSON
-    return fetchJsonTable<any>("/basic-conditions.json");
+  } catch {
+    logJsonFallback("GetBasicConditions");
+    return fetchJsonTable<any>("/basicconditions.json");
   }
 }
 
@@ -133,9 +142,9 @@ export async function GetBasicConditionByConditionName(conditionName: string) {
     const query = `SELECT * FROM BasicConditions WHERE ConditionName = '${conditionName}' LIMIT 1`;
     const result = await worker.db.query(query);
     return result[0];
-  } catch (error) {
-    // Fallback to JSON
-    return fetchJsonSingle<any>("/basic-conditions.json", (row) => row.ConditionName === conditionName);
+  } catch {
+    logJsonFallback("GetBasicConditionByConditionName");
+    return fetchJsonSingle<any>("/basicconditions.json", (row) => row.ConditionName === conditionName);
   }
 }
 
@@ -145,9 +154,9 @@ export async function GetCombinedConditions() {
     const query = `SELECT * FROM CombinedConditions ORDER BY ConditionName`;
     const results = await worker.db.query(query);
     return results;
-  } catch (error) {
-    // Fallback to JSON
-    return fetchJsonTable<any>("/combined-conditions.json");
+  } catch {
+    logJsonFallback("GetCombinedConditions");
+    return fetchJsonTable<any>("/combinedconditions.json");
   }
 }
 
@@ -157,8 +166,8 @@ export async function GetCombinedConditionByConditionName(conditionName: string)
     const query = `SELECT * FROM CombinedConditions WHERE ConditionName = '${conditionName}' LIMIT 1`;
     const result = await worker.db.query(query);
     return result[0];
-  } catch (error) {
-    // Fallback to JSON
-    return fetchJsonSingle<any>("/combined-conditions.json", (row) => row.ConditionName === conditionName);
+  } catch {
+    logJsonFallback("GetCombinedConditionByConditionName");
+    return fetchJsonSingle<any>("/combinedconditions.json", (row) => row.ConditionName === conditionName);
   }
 }
