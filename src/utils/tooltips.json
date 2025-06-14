@@ -1,0 +1,177 @@
+[
+  {
+    "TooltipId": 1,
+    "TooltipTag": "Accurate Attack",
+    "TooltipDescription": "When you make an attack, you can take a penalty of up to –2 on the effect modifier of the attack and add the same number(up to + 2) to your attack bonus. Your effect modifier cannot be reduced below + 0 and your attack bonus cannot more than double in this way. The changes are declared before you make the attack check and last until the start of your next turn."
+  },
+  {
+    "TooltipId": 2,
+    "TooltipTag": "Feint",
+    "TooltipDescription": "You can use Deception as a standard action to mislead an opponent in combat. Make a Deception check as a standard action opposed by the better of your target’s Deception or Insight. If your Deception check succeeds, the target is vulnerable against your next attack, until the end of your next round(see Vulnerable in the Conditions section of The Basics chapter)."
+  },
+  {
+    "TooltipId": 3,
+    "TooltipTag": "Trick",
+    "TooltipDescription": "You can use Deception to mislead an opponent into taking a potentially unwise action, such as trying to hit you while standing in front of an electrical junction box or at the edge of a precipice. If your Deception check opposed by Deception or Insight succeeds, your opponent is heedless of the potential danger and may hit the junction box or lose his balance and fall, if his attack against you fails. (On the other hand, if the attack succeeds, it might slam you into the junction box or send you flying off the edge. You’re taking a risk.)<br/><br/>More than one degree of failure on the Deception check means you put yourself in a bad position; you are vulnerable against the target’s attacks until the start of your next round!"
+  },
+  {
+    "TooltipId": 4,
+    "TooltipTag": "All-Out Attack",
+    "TooltipDescription": "When you make an attack you can take a penalty of up to –2 on your active defenses(Dodge and Parry) and add the same number(up to + 2) to your attack bonus. Your defense bonuses cannot be reduced below + 0 and your attack bonus cannot more than doublehe changes to attack and defense bonus are declared before you make the attack check and last until the start of your next turn."
+  },
+  {
+    "TooltipId": 5,
+    "TooltipTag": "Magical Inventions",
+    "TooltipDescription": "For magical, rather than technological, inventions, use the normal inventing rules, but substitute the Expertise: Magic skill for the Technology skill on the design and construction checks."
+  },
+  {
+    "TooltipId": 6,
+    "TooltipTag": "Feature",
+    "TooltipDescription": "You have one or more minor features, effects granting you an occasionally useful ability, one per rank. This effect is essentially a version of the Benefit advantage(see page 134) but a power rather than a virtue of skill, talent, or social background. For example, diplomatic immunity or wealth are Benefits; fur, the ability to mimic sounds, or a hidden compartment in your hollow leg are Features.<br/><br/> It’s up to the GM what capabilities qualify as Features; generally, if something has no real game effect, it’s just a descriptor. If it has an actual game system benefit, it may be a Feature. There’s no need to define every possible Feature a character may have down to the last detail.<br/><br/>Some Features may be sustained duration rather than permanent with no change in cost. This suits active Fea tures a character has to use and maintain rather than having them as passive traits requiring no effort whatsoever."
+  },
+  {
+    "TooltipId": 7,
+    "TooltipTag": "Sample Benefits",
+    "TooltipDescription": "The following are some potential Benefits. The GM is free to choose any suitable Benefit for the series.<br/><br/><ul><li><b>Alternate Identity:</b> You have an alternate identity, complete with legal paperwork (driver’s license, birth certificate, etc.). This is different from a costumed identity, which doesn’t necessarily have any special legal status (but may in some settings).</li><li><b>Ambidexterity:</b> You are equally adept using either hand, suffering no circumstance penalty for using your off-hand (as you don’t have one).</li><li><b>Cipher:</b> Your true history is well hidden, making it difficult to dig up information about you. Investigation checks concerning you are made at a –5 circumstance penalty per rank in this benefit.</li><li><b>Diplomatic Immunity:</b> By dint of your diplomatic status, you cannot be prosecuted for crimes in nations other than your own. All another nation can do is deport you to your home nation.</li><li><b>Security Clearance:</b> You have access to classified government information, installations, and possibly equipment and personnel.</li><li><b>Status:</b> By virtue of birth or achievement, you have special status. Examples include nobility, knighthood, aristocracy, and so forth.</li><li><b>Wealth:</b> You have greater than average wealth or material resources, such as well-off (rank 1), independently wealthy (rank 2), a millionaire (rank 3), multimillionaire (rank 4), or billionaire (rank 5).</li></ul>"
+  },
+  {
+    "TooltipId": 8,
+    "TooltipTag": "Grab",
+    "TooltipDescription": "You attempt to grab a target. Make an attack check against the target. If successful, the target makes a resistance check against your Strength(or the rank of a grabbing effect) using the better of Strength or Dodge. If you win with one degree of success, the target is restrained (immobile and vulnerable)wo or more degrees leave your opponent bound(defenseless, immobile, and impaired). You can attempt to improve an existing hold with another grab action on a following turn. Any resulting degrees of success are cumulative, but if you lose, the target escapes.<br<br/>You are hindered and vulnerable while grabbing and holding an opponent. You can maintain a successful grab as a free action each turn, but cannot perform other actions requiring the use of your grabbing limb(s) while doing so. Since maintaining a grab is a free action, you can take a standard action to inflict your Strength damage to a grabbed target on subsequent turns after the grab is established.<br/><br/>You can drag a restrained or bound target along with you when you movehe target gets a Strength resistance check against your Strength. If it fails, you move and the target moves along with youf the target resists, you are immobilized that turn unless you release your hold on the target.<br/><br/>You can end a grab(releasing your target) as a free action. If you are unable to take the free action maintain the hold, the target is automatically released. A target can attempt to escape from a grab as a move action(see Escape below).<br/><br/><b>Escape:</b>  You attempt to escape from a successful grab (see Grab). Make a check of your Athletics or Acrobatics against the routine check result of your opponent’s Strength or grab effect rankf you succeed, you end the grab and can move away from your opponent, up to your normal ground speed minus one rank, if you choose. If you fail, you are still grabbed."
+  },
+  {
+    "TooltipId": 9,
+    "TooltipTag": "Suffocation",
+    "TooltipDescription": "Characters can hold their breath for ten rounds (one minute) plus a number of rounds equal to twice their Stamina. After that time they must make a Fortitude check(DC 10) each round to continue holding their breath. The DC increases by + 1 for each previous success. Failure on the Fortitude check means the character becomes incapacitated. On the following round the character is dying. A dying character cannot stabilize until able to breathe again. Heroes with Immunity to Suffocation can go an unlimited time without air."
+  },
+  {
+    "TooltipId": 10,
+    "TooltipTag": "Defensive Attack",
+    "TooltipDescription": "When you make an attack you can take a penalty of up to –2 on your attack bonus and add the same number (up to + 2) to your active defenses(Dodge and Parry). Your attack bonus cannot be reduced below + 0 and your defense bonuses cannot more than double. The changes to attack and defense bonus last until the start of your next turn. This maneuver does not apply to effects requiring no attack check or allowing no resistance check."
+  },
+  {
+    "TooltipId": 11,
+    "TooltipTag": "Dodge",
+    "TooltipDescription": "Dodge defense is based on Agility rank. It includes reaction time, quickness, nimbleness, and overall coordination, used to avoid ranged attacks or other hazards where reflexes and speed are important."
+  },
+  {
+    "TooltipId": 12,
+    "TooltipTag": "Parry",
+    "TooltipDescription": "Parry defense is based on Fighting. It is the ability to counter, duck, or otherwise evade a foe’s attempts to strike you in close combat through superior fighting ability."
+  },
+  {
+    "TooltipId": 13,
+    "TooltipTag": "Conditions",
+    "TooltipDescription": "A dying character is incapacitated (defenseless, stunned, and unaware) and near death. When the character gains this condition, immediately make a Fortitude check(DC 15). If the check succeeds, nothing happens. With two degrees of success, the character stabilizes, removing this condition. If the check fails, the character remains dying. Three or more total degrees of failure mean the character dies: so three failed Fortitude checks or one or two checks adding up to three degrees. Dying characters make a Fortitude check each round until they either die or stabilize. Another character can stabilize a dying character with a successful Treatment check (DC 15) or use of a Healing effect (see the Powers chapter)."
+  },
+  {
+    "TooltipId": 14,
+    "TooltipTag": "Area",
+    "TooltipDescription": "This extra allows an effect that normally works on a single target to affect an area. No attack check is needed; the effect simply fills the designated area, based on the type of modifier. Potential targets in the area are permitted a Dodge resistance check(DC 10 + effect rank) to avoid some of the effect(reflecting ducking for cover, dodging out of the way, and so forth). A successful resistance check reduces the Area effect to half its normal rank against that target(round down, minimum of 1 rank)."
+  },
+  {
+    "TooltipId": 15,
+    "TooltipTag": "Extra Effort",
+    "TooltipDescription": "Players can have their heroes use extra effort simply by declaring they are doing so. Extra effort is a free action and can be performed at any time during the hero’s turn (but is limited to once per turn). A hero using extra effort gains one of the following benefits:<ul><li><b>Action:</b> Gain an additional standard action during your turn, which can be exchanged for a move or free action, as usual.</li><li><b>Bonus:</b> Perform one check with a bonus (+2 circumstance bonus) or improve an existing bonus to a major bonus(+ 5 circumstance bonus). This bonus can also negate a penalty (–2 circumstance penalty), allowing you to perform the check with no modifier, or reduce a major penalty from a –5 penalty to a –2 penalty.</li><li><b>Power:</b> Increase one of your hero’s power effects by +1 rank until the start of the hero’s next turn. Permanent effects cannot be increased in this way.</li><li><b>Power Stunt:</b> Temporarily gain and use an Alternate Effect (see Alternate Effect in the Powers chapter). The Alternate Effect lasts until the end of the scene or until its duration expires, whichever comes first. Permanent effects cannot be used for power stunts.</li><li><b>Resistance:</b>  Gain an immediate additional resistance check against an ongoing effect. If you’re compelled or controlled, the fatigue from the extra effort doesn’t affect you until you’re free of the effect; this is so you can’t resist yourself to exhaustion as a way of avoiding being controlled!</li><li><b>Retry:</b>Certain effects (see the Powers chapter) require extra effort to retry after a certain degree of failure. The extra effort merely permits another attempt to use the effect; it grants no other benefits.</li><li><b>Speed:</b>  Increase the hero’s speed rank by +1 until the start of the hero’s next turn.</li><li><b>Strength:</b>  Increase the hero’s Strength rank by +1 until the start of the hero’s next turn.</li></ul><h4>Cost of Extra Effort</h4>At the start of the turn immediately after using extra effort, the hero becomes fatigued. A fatigued hero who uses extra effort becomes exhausted and an exhausted hero who uses extra effort is incapacitated. If you spend a hero point at the start of the turn following the extra effort to remove the fatigue, the hero suffers no adverse effects. In essence, spending a hero point lets you use extra effort without suffering fatigue."
+  },
+  {
+    "TooltipId": 16,
+    "TooltipTag": "Immunity",
+    "TooltipDescription": "You are immune to certain effects, automatically succeeding on any resistance check against them. You assign ranks of Immunity to various effects to gain immunity to them (with more extensive effects requiring more ranks)."
+  },
+  {
+    "TooltipId": 17,
+    "TooltipTag": "Hiding",
+    "TooltipDescription": "If you have cover or concealment, make a Stealth check, opposed by an observer’s Perception check, to hide and go unnoticed.<br/><br/>If others are aware of your presence, you can’t use Stealth to remain undetected. You can run around a corner so you are out of sight and then use Stealth, but others know which way you went. You can’t hide at all if you have absolutely no cover or concealment, since that means you are standing out in plain sight. Of course, if someone isn’t looking directly at you(you’re sneaking up from behind, for example), then you have concealment relative to that person.<br/<br/>A successful Deception or Intimidation check can give you the momentary distraction needed to make a Stealth check while people are aware of you. When others turn their attention from you, make a Stealth check if you can reach cover or concealment of some kind. (As a general guideline, any such cover has to be within 1 foot for every rank you have in Stealth.) This check, however, is at a –5 penalty because you have to move quickly."
+  },
+  {
+    "TooltipId": 18,
+    "TooltipTag": "Aim",
+    "TooltipDescription": "By taking a standard action to aim and line up an attack, you get a bonus to hit when you make the attack. If you’re making a close attack, or a ranged attack at close range, you get a + 5 circumstance bonus on your attack check. If you’re making a ranged attack from a greater distance, you get a + 2 circumstance bonus.<br/><br/>However, you are vulnerable while aiming and it requires a free action to maintain your aim before you make your attack. If you are unable to maintain it, you lose its benefit.<br/><br/>Once you aim, your next action must be to make the attack. Taking a different action spoils your aim and you lose the bonus."
+  },
+  {
+    "TooltipId": 19,
+    "TooltipTag": "Defend",
+    "TooltipDescription": "Rather than attacking, you focus on defense. Make an opposed check of your appropriate active defense versus any attack made on you until the start of your next turn. Add 10 to any roll of 10 or less that you make on these checks, just as if you spent a hero point (thus ensuring a minimum roll of 11). The attacker must equal or exceed your opposed check result in order to hit you."
+  },
+  {
+    "TooltipId": 20,
+    "TooltipTag": "Disarm",
+    "TooltipDescription": "You attempt to knock an item—such as a weapon or device—out of an opponent’s grasp. Make an attack check against the defender with a –2 penalty. If you attempt to disarm with a ranged attack, you are at –5 penalty. If your attack succeeds, make an opposed check of your attack’s damage against the defender’s Strength. If you win, the defender dropped the held object. If you made the disarm unarmed, you can grab the dropped object as a free action. If you make a disarm attempt with a melee weapon and lose the opposed check, the defender may immediately make an attempt to disarm you as a reaction; make another opposed damage vs. Strength check. If this disarm attempt fails, you do not, however, get an additional attempt to disarm the defender."
+  },
+  {
+    "TooltipId": 21,
+    "TooltipTag": "Grabbing",
+    "TooltipDescription": "You attempt to grab a target. Make an attack check against the target. If successful, the target makes a resistance check against your Strength(or the rank of a grabbing effect) using the better of Strength or Dodge. If you win with one degree of success, the target is restrained (immobile and vulnerable) wo or more degrees leave your opponent bound(defenseless, immobile, and impaired). You can attempt to improve an existing hold with another grab action on a following turn. Any resulting degrees of success are cumulative, but if you lose, the target escapes.<br<br/>You are hindered and vulnerable while grabbing and holding an opponent. You can maintain a successful grab as a free action each turn, but cannot perform other actions requiring the use of your grabbing limb(s) while doing so. Since maintaining a grab is a free action, you can take a standard action to inflict your Strength damage to a grabbed target on subsequent turns after the grab is established.<br/><br/>You can drag a restrained or bound target along with you when you movehe target gets a Strength resistance check against your Strength. If it fails, you move and the target moves along with youf the target resists, you are immobilized that turn unless you release your hold on the target.<br/><br/>You can end a grab(releasing your target) as a free action. If you are unable to take the free action maintain the hold, the target is automatically released. A target can attempt to escape from a grab as a move action(see Escape below).<br/><br/><b>Escape:</b>  You attempt to escape from a successful grab (see Grab). Make a check of your Athletics or Acrobatics against the routine check result of your opponent’s Strength or grab effect rankf you succeed, you end the grab and can move away from your opponent, up to your normal ground speed minus one rank, if you choose. If you fail, you are still grabbed."
+  },
+  {
+    "TooltipId": 22,
+    "TooltipTag": "Smash",
+    "TooltipDescription": "You attempt to damage or break an object held or worn by an opponent. Make an attack check against the defense of the character with the object, with a –5 circumstance penalty if you are attacking a held object. If your attack check succeeds, you inflict damage on the object rather than the character. See <b>Damaging Objects</b> for details on breaking things."
+  },
+  {
+    "TooltipId": 23,
+    "TooltipTag": "Trip",
+    "TooltipDescription": "You try to trip or throw your opponent to the ground. Make a close attack check against your opponent’s Parry with a –2 circumstance penalty on the check. If the attack succeeds, make an opposed check of your Acrobatics or Athletics against your opponent’s Acrobatics or Athletics. Use whichever has the better bonus in each case.<br/><br/>If you win, the defender is prone in an area adjacent to you of your choice. If you lose, the defender immediately gets another opposed check to try and trip you. If it fails, the trip attempt ends."
+  },
+  {
+    "TooltipId": 24,
+    "TooltipTag": "Inventing",
+    "TooltipDescription": "Characters with the Inventor advantage can create inventions, temporary devices. To create an invention, the inventor defines its effects and its cost in power points. This cost is used for the necessary skill checks, and determines the time required to create the invention. Inventions are subject to the same power level limits as other effects in the series."
+  },
+  {
+    "TooltipId": 25,
+    "TooltipTag": "Hero Points",
+    "TooltipDescription": "Whether it’s luck, talent, or sheer determination, heroes have something setting them apart from everyone else, allowing them to perform amazing feats under the most difficult circumstances. In Mutants & MasterMinds that “something” is hero points. Spending a hero point can make the difference between success and failure in the game. When you’re entrusted with the safety of the world, that means a lot!<br/><br/>Hero points allow players to “edit” the plot of the adventure and the rules of the game to a degree. They give heroes the ability to do the amazing things heroes do in the comics, but with certain limits, and they encourage players to make the sort of choices heroes do in the comics, in order to get more hero points.<br/><br/>Players start each game session with 1 hero point. During the adventure they get opportunities to earn more hero points. Players can use various tokens(poker chips, glass beads, etc.) to keep track of their hero points, handing them over to the Gamemaster when they spend them. The Gamemaster can likewise give out tokens when awarding hero points to the players.<br/><br/>Unspent hero points don’t carry over to the next adventure; the heroes start out with 1 point again. Use them or lose them! Since hero points are a finite resource, players need to manage them carefully, spending them at the most opportune times and taking chances to earn them through complications. Playing it “safe” tends to eliminate chances of getting more hero points while taking risks, facing complications, and, in general, acting like a hero offers rewards that help them out later on."
+  },
+  {
+    "TooltipId": 26,
+    "TooltipTag": "Minions",
+    "TooltipDescription": "Minions are minor characters subject to special rules in combat, and generally easier to defeat than normal characters. Villains often employ hordes of minions against heroes. The following rules apply to minions:<ul><li>Minions cannot score critical hits against non-minions.</li><li>Non-minions can make attack checks against minions as routine checks.</li><li>If a minion fails a resistance check, the minion suffers the worst degree of the effect. So a minion failing a Damage resistance check, for example, is incapacitated, regardless of the degree of failure.</li><li>Certain traits (like the Takedown advantage) are more effective against or specifically target minions.</li></ul>"
+  },
+  {
+    "TooltipId": 27,
+    "TooltipTag": "Power Attack",
+    "TooltipDescription": "When you make an attack you can take a penalty of up to –2 on your attack bonus and add the same number (up to + 2) to the effect bonus of your attack. Your attack bonus cannot be reduced below + 0 and the effect bonus cannot more than double. The changes to attack and effect are decided before you make your attack check and last until the start of your next turn. This maneuver does not apply to effects requiring no attack check or allowing no resistance check."
+  },
+  {
+    "TooltipId": 28,
+    "TooltipTag": "Magical Rituals",
+    "TooltipDescription": "Characters with the Ritualist advantage can perform magical rituals. They are similar to inventions: one - time powers requiring some time and effort to set up.<br/><br/>For rituals, substitute the Expertise: Magic skill for both the design and construction checks. The design portion of the ritual takes 4 hours per power point of the ritual’s cost(pouring over ancient scrolls and grimoires, drawing diagrams, casting horoscopes, meditating, consulting spirit- guides, and so forth). The performance of the actual ritual takes 10 minutes per point of the ritual’s cost. So a ritual costing 10 power points takes 40 hours to research and 100 minutes to perform. As with inventing, the ritual is good for one scene. Failing the research check means the ritual isn’t usable and three or more degrees of failure results in a mishap(at the GM’s discretion).<br/><br/>“Jury - rigging” a ritual has the same effects as for an invention. Spending a hero point allows the ritualist to skip the design check and perform the ritual in a number of rounds equal to its cost. An Expertise: Magic check against a DC equal of(15 + the ritual’s cost) is needed to successfully perform the ritual. Failure means the ritual does not work and the time and effort is wasted."
+  },
+  {
+    "TooltipId": 29,
+    "TooltipTag": "Routine Checks",
+    "TooltipDescription": "A check normally represents performing a task under a certain amount of pressure, in the midst of the furious action of super-heroic adventure. When the situation is less demanding, you can achieve more reliable results.<br/><br/>Under routine circumstances—when you are not under any pressure—instead of rolling the die for the check, calculate your result as if you had rolled a 10. This ensures success for average(DC 10) tasks with a modifier of + 0 or more. More capable characters(with higher bonuses) can succeed on more difficult checks on a routine basis: a + 10 bonus, for example, means a routine check total of 20, able to succeed at DC 20 tasks on a routine basis, and achieve three degrees of success on average(DC 10) tasks on a routine basis."
+  },
+  {
+    "TooltipId": 30,
+    "TooltipTag": "Demoralize",
+    "TooltipDescription": "You can use Intimidation in combat as a standard action to undermine an opponent’s confidence. Make an Intimidation check as a standard action. If it succeeds, your target is impaired (a –2 circumstance penalty on checks) until the end of your next round. With four or more degrees of success, the target is disabled(a –5 penalty) until the end of your next round."
+  },
+  {
+    "TooltipId": 31,
+    "TooltipTag": "Team Checks",
+    "TooltipDescription": "Sometimes characters work together and help each other out. In this case, one character(usually the one with the highest bonus) is considered the leader of the effort and makes the check normally, while each helper makes the same type of check using the same trait(s) against DC 10. The helpers’ individual degrees of success(and failure!) are added together to achieve the final outcome of the assistance.<br/><br/>Success grants the leader a + 2 circumstance bonus. Three or more total degrees of success grant a + 5 circumstance bonus. One degree of failure provides no modifier, but two or more impose a –2 circumstance penalty!<br/><br/>The GM sets the limit on how many characters can help as part of a team check. Regardless of the number of helpers, the leader’s bonus cannot be more than + 5 (for three or more total degrees of success) nor the penalty greater than –2(for two or more total degrees of failure)."
+  },
+  {
+    "TooltipId": 32,
+    "TooltipTag": "Ranged",
+    "TooltipDescription": "The effect works at a distance, limited by perception and path and requiring a ranged attack check against the subject’s Dodge defense. A ranged effect has a short range of(rank x 25 feet), a medium range of(rank x 50 feet) and a long range of (rank x 100 feet). Ranged attack checks at medium range suffer a –2 circumstance penalty, while ranged attacks at long range suffer a –5 circumstance penalty. See the <b>Action & Adventure</b> chapter for details."
+  },
+  {
+    "TooltipId": 33,
+    "TooltipTag": "Sample Ultimate Efforts",
+    "TooltipDescription": "The following are some potential Ultimate Efforts. The GM is free to add others suitable to the series.<ul><li><b>Ultimate Aim:</b> When you take a standard action to aim an attack (see Aim, page 246), you can spend a hero point to apply a 20 result to the attack check on the following round. Since the Ultimate Aim bonus is not a natural 20, it also does not qualify as an automatic or critical hit.</li><li><b>Ultimate Resistance:</b> You can spend a hero point to apply a 20 result to a resistance check with one defense determined when you acquire this advantage.</li><li><b>Ultimate Skill:</b> You can spend a hero point to apply a 20 result to checks with a particular skill.</li></ul>"
+  },
+  {
+    "TooltipId": 34,
+    "TooltipTag": "Investigation",
+    "TooltipDescription": "You know how to make contacts, collect gossip and rumors, question informants, and otherwise get information from people.<br/><br/>By succeeding at a DC 10 Investigation check taking at least an hour, you get a feel for the major news and rumors in an area. This assumes no obvious reasons exist why information would be withheld. The degree of the check result determines the completeness and detail of the information. Information ranges from general to protected, and the DC increases accordingly for the type of information, as given on the table.<h4> Gather Information Results</h4><table><tr><th>Degree of Success</th><th>Type of Information</th></tr><tr><td>One</td><td>General</td></tr><tr><td>Two</td><td>Specific</td></tr><tr><td>Three</td><td>Restricted</td></tr><tr><td>Four</td><td>Protected</td></tr></table><ul><li><i>General</i> information concerns local happenings, rumors, gossip, and the like.</li><li><i>Specific</i> information usually relates to a particular question.</li><li><i>Restricted</i> information isn’t generally known and requires you to locate someone with access to the information.</li><li><i>Protected</i> information is even harder to come by and might involve some danger, either for the one asking the questions or the one providing the answers.</li></ul>Failure on the Investigation check means you waste time turning up nothing of value. An additional degree of failure means you also alert someone who may be interested in your inquiries, perhaps even someone you are investigating!"
+  },
+  {
+    "TooltipId": 35,
+    "TooltipTag": null,
+    "TooltipDescription": null
+  }
+]

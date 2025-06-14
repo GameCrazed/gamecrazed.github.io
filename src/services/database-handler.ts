@@ -23,14 +23,30 @@ async function InitializeWorker() {
   );
 }
 
+async function fetchJsonTable<T>(filename: string): Promise<T[]> {
+  const response = await fetch(filename);
+  if (!response.ok) throw new Error(`Failed to fetch ${filename}`);
+  return await response.json();
+}
+
+async function fetchJsonSingle<T>(
+  filename: string,
+  filter: (row: T) => boolean
+): Promise<T | undefined> {
+  const data = await fetchJsonTable<T>(filename);
+  return data.find(filter);
+}
+
 export async function LoadMeasurements(imperialMetric: string) {
   try {
     const worker = await InitializeWorker();
     const query = `SELECT * FROM Measurements WHERE MeasurementType = '${imperialMetric}'`;
     return await worker.db.query(query);
   } catch (error) {
-    console.error("Error loading Measurements:", error);
-    throw error;
+    // Fallback to JSON
+    return (await fetchJsonTable<any>("/measurements.json")).filter(
+      (row: any) => row.MeasurementType === imperialMetric
+    );
   }
 }
 
@@ -39,11 +55,15 @@ export async function GetMeasurementByMassLbs(massInLbs: number) {
     const worker = await InitializeWorker();
     const query = `SELECT * FROM Measurements WHERE MeasurementType = 'imperial' AND NumericalMass >= ${massInLbs} ORDER BY NumericalMass ASC LIMIT 1`;
     const result = await worker.db.query(query);
-
     return result[0];
   } catch (error) {
-    console.error("Error getting Measurement by Mass:", error);
-    throw error;
+    // Fallback to JSON
+    const data = await fetchJsonTable<any>("/measurements.json");
+    return data
+      .filter(
+        (row: any) => row.MeasurementType === "imperial" && row.NumericalMass >= massInLbs
+      )
+      .sort((a: any, b: any) => a.NumericalMass - b.NumericalMass)[0];
   }
 }
 
@@ -52,11 +72,10 @@ export async function GetMeasurementByRank(rank: number) {
     const worker = await InitializeWorker();
     const query = `SELECT * FROM Measurements WHERE MeasurementType = 'imperial' AND Rank = ${rank} LIMIT 1`;
     const result = await worker.db.query(query);
-
     return result[0];
   } catch (error) {
-    console.error("Error getting Measurement by Rank:", error);
-    throw error;
+    // Fallback to JSON
+    return fetchJsonSingle<any>("/measurements.json", (row) => row.MeasurementType === "imperial" && row.Rank == rank);
   }
 }
 
@@ -67,8 +86,8 @@ export async function GetAdvantages() {
     const results = await worker.db.query(query);
     return results;
   } catch (error) {
-    console.error("Error getting Advantages: ", error);
-    throw error;
+    // Fallback to JSON
+    return fetchJsonTable<any>("/advantages.json");
   }
 }
 
@@ -79,8 +98,8 @@ export async function GetToolTipByTag(tagName: string) {
     const result = await worker.db.query(query);
     return result[0];
   } catch (error) {
-    console.error("Error getting ToolTip: ", error);
-    throw error;
+    // Fallback to JSON
+    return fetchJsonSingle<any>("/tooltips.json", (row) => row.ToolTipTag === tagName);
   }
 }
 
@@ -91,8 +110,8 @@ export async function GetToolTipById(tooltipId: number) {
     const result = await worker.db.query(query);
     return result[0];
   } catch (error) {
-    console.error("Error getting Tooltip: ", error);
-    throw error;
+    // Fallback to JSON
+    return fetchJsonSingle<any>("/tooltips.json", (row) => row.TooltipId == tooltipId);
   }
 }
 
@@ -103,8 +122,8 @@ export async function GetBasicConditions() {
     const results = await worker.db.query(query);
     return results;
   } catch (error) {
-    console.error("Error getting Basic Conditions: ", error);
-    throw error;
+    // Fallback to JSON
+    return fetchJsonTable<any>("/basic-conditions.json");
   }
 }
 
@@ -115,8 +134,8 @@ export async function GetBasicConditionByConditionName(conditionName: string) {
     const result = await worker.db.query(query);
     return result[0];
   } catch (error) {
-    console.error("Error getting Basic Conditions: ", error);
-    throw error;
+    // Fallback to JSON
+    return fetchJsonSingle<any>("/basic-conditions.json", (row) => row.ConditionName === conditionName);
   }
 }
 
@@ -127,8 +146,8 @@ export async function GetCombinedConditions() {
     const results = await worker.db.query(query);
     return results;
   } catch (error) {
-    console.error("Error getting Combined Conditions: ", error);
-    throw error;
+    // Fallback to JSON
+    return fetchJsonTable<any>("/combined-conditions.json");
   }
 }
 
@@ -139,7 +158,7 @@ export async function GetCombinedConditionByConditionName(conditionName: string)
     const result = await worker.db.query(query);
     return result[0];
   } catch (error) {
-    console.error("Error getting Combined Conditions: ", error);
-    throw error;
+    // Fallback to JSON
+    return fetchJsonSingle<any>("/combined-conditions.json", (row) => row.ConditionName === conditionName);
   }
 }
