@@ -123,7 +123,7 @@ export async function GetBasicConditions() {
     return results;
   } catch (error) {
     // Fallback to JSON
-    return fetchJsonTable<any>("/basic-conditions.json");
+    return fetchJsonTable<any>("/basicconditions.json");
   }
 }
 
@@ -135,7 +135,7 @@ export async function GetBasicConditionByConditionName(conditionName: string) {
     return result[0];
   } catch (error) {
     // Fallback to JSON
-    return fetchJsonSingle<any>("/basic-conditions.json", (row) => row.ConditionName === conditionName);
+    return fetchJsonSingle<any>("/basicconditions.json", (row) => row.ConditionName === conditionName);
   }
 }
 
@@ -147,7 +147,7 @@ export async function GetCombinedConditions() {
     return results;
   } catch (error) {
     // Fallback to JSON
-    return fetchJsonTable<any>("/combined-conditions.json");
+    return fetchJsonTable<any>("/combinedconditions.json");
   }
 }
 
@@ -159,6 +159,6 @@ export async function GetCombinedConditionByConditionName(conditionName: string)
     return result[0];
   } catch (error) {
     // Fallback to JSON
-    return fetchJsonSingle<any>("/combined-conditions.json", (row) => row.ConditionName === conditionName);
+    return fetchJsonSingle<any>("/combinedconditions.json", (row) => row.ConditionName === conditionName);
   }
 }
