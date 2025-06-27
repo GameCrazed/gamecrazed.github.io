@@ -60,7 +60,13 @@ async function PopulateAdvantagesList(): Promise<void> {
                     while ((match = regex.exec(descriptionHtml)) !== null) {
                         const word = match[1];
                         const tooltip = await GetToolTipByTag(word);
-                        descriptionHtml = descriptionHtml.replace(`{${word}}`, `<span class="tooltip" data-tooltip-index="${(tooltip as Tooltip).TooltipId}">${(tooltip as Tooltip).TooltipTag}</span>`);
+                        if (tooltip) {
+                            descriptionHtml = descriptionHtml.replace(`{${word}}`, `<span class="tooltip" data-tooltip-index="${(tooltip as Tooltip).TooltipId}">${(tooltip as Tooltip).TooltipTag}</span>`);
+                        } else {
+                            // If tooltip not found, just show the word without a tooltip
+                            console.warn(`Tooltip not found for tag: ${word}`);
+                            descriptionHtml = descriptionHtml.replace(`{${word}}`, word);
+                        }
                     }
 
                     const descriptionElement = document.createElement('div');
