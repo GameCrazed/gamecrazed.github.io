@@ -103,12 +103,12 @@ export async function GetAdvantages() {
 export async function GetToolTipByTag(tagName: string) {
   try {
     const worker = await InitializeWorker();
-    const query = `SELECT * FROM Tooltips WHERE ToolTipTag = '${tagName}' LIMIT 1`;
+    const query = `SELECT * FROM Tooltips WHERE TooltipTag = '${tagName}' LIMIT 1`;
     const result = await worker.db.query(query);
     return result[0];
   } catch {
     logJsonFallback("GetToolTipByTag");
-    return fetchJsonSingle<any>("/tooltips.json", (row) => row.ToolTipTag === tagName);
+    return fetchJsonSingle<any>("/tooltips.json", (row) => row.TooltipTag === tagName);
   }
 }
 
